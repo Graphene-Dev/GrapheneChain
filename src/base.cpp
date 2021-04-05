@@ -4,35 +4,13 @@
 #include <list>
 #include "sha256.h"
 using namespace std;
-
-int main(int argc, char *argv[]) {
-    cout << "Base Start\n";
-    //Content
-
-    cout << "Base End\n";
-
-    string input = "this is a test";
-    string hash = sha256(input);
-
-    cout << "sha256('"<< input << "'):" << hash <<  endl;
-    return 0;
-}
-
-
-class BlockChain {
-
-public:
-    int height;
-
-
-};
-
 class Block {
     string previousHash = "";
     list <string> transactions;
 
 public:
-    Block () {}
+    Block () {
+    }
 
     void setPreviousHash(string previousHash) {
         this->previousHash = previousHash;
@@ -47,8 +25,8 @@ public:
     }
 
     vector<string> getTransactions() {
-       vector <string > vecOfStr(transactions.begin(), transactions.end());
-       return vecOfStr;
+        vector <string > vecOfStr(transactions.begin(), transactions.end());
+        return vecOfStr;
     }
 
     string getPreviousHash() {
@@ -57,24 +35,46 @@ public:
 
     string getHash() {
         list <string> transactiosnHashed;
-        string transactions[transactions.size()];
+        string* transactions = new string[this->transactions.size()];
         int k = 0;
         for (string const &i: this->transactions) {
             transactions[k++] = i;
         }
-        for (int i = 0; i < transactions.size(); i++) {
+        for (unsigned int i = 0; i < this->transactions.size(); i++) {
             transactiosnHashed.push_back(sha256(to_string(i)+transactions[i]));
         }
-        string transactionsHashes[transactions.size()];
+        string* transactionsHashes = new string[transactiosnHashed.size()];
         int l = 0;
         for (string const &i: transactiosnHashed) {
             transactionsHashes[l++] = i;
         }
         string all = previousHash;
-        for (int i = 0; i < transactiosnHashed.size(); i++) {
+        for (unsigned int i = 0; i < transactiosnHashed.size(); i++) {
             all += "\n" + transactionsHashes[i];
         }
         return sha256(all);
     }
+
+};
+
+
+int main(int argc, char *argv[]) {
+    cout << "Base Start\n";
+    //Content
+    Block block1;
+    block1.addTransaction("Techy pays Stealth 100");
+    cout << block1.getHash() + "\n";
+
+
+    cout << "Base End\n";
+    return 0;
+}
+
+
+class BlockChain {
+
+public:
+    int height;
+
 
 };
