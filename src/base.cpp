@@ -28,34 +28,35 @@ public:
 };
 
 class Block {
-    string previousHash;
+    string previousHash = "";
     list <string> transactions;
 
 public:
     Block () {}
 
-    void setPreviousHash() {
-
+    void setPreviousHash(string previousHash) {
+        this->previousHash = previousHash;
     }
 
-    void addTransaction() {
-
+    void addTransaction(string transaction) {
+        this->transactions.push_back(transaction);
     }
 
     void removeTransaction(int position) {
-        
+        cout << "Not implemented yet \n";
     }
 
     vector<string> getTransactions() {
-
+       vector <string > vecOfStr(transactions.begin(), transactions.end());
+       return vecOfStr;
     }
 
     string getPreviousHash() {
-
+        return previousHash;
     }
 
     string getHash() {
-
+        
     }
 
 };
