@@ -38,28 +38,28 @@ public:
     }
 
     string getTransaction() {
-
+        return "From: " + sender + ", To: " + receiver+ ", Amount: " + to_string(amount);
     }
 
     string getHash() {
-        
+        return sha256(sender+receiver+to_string(amount));
     }
     
 };
 
 class Block {
-    string previousHash = "";
-    list <string> transactions;
+    string previousHash;
+    list <Transaction> transactions;
 
 public:
     Block () {
     }
 
-    void setPreviousHash(string previousHash) {
+    void setPreviousHash(Transaction previousHash) {
         this->previousHash = previousHash;
     }
 
-    void addTransaction(string transaction) {
+    void addTransaction(Transaction transaction) {
         this->transactions.push_back(transaction);
     }
 
@@ -67,8 +67,8 @@ public:
         cout << "Not implemented yet \n";
     }
 
-    vector<string> getTransactions() {
-        vector <string > vecOfStr(transactions.begin(), transactions.end());
+    vector<Transaction> getTransactions() {
+        vector <Transaction > vecOfStr(transactions.begin(), transactions.end());
         return vecOfStr;
     }
 
@@ -77,23 +77,15 @@ public:
     }
 
     string getHash() {
-        list <string> transactiosnHashed;
-        string* transactions = new string[this->transactions.size()];
-        int k = 0;
-        for (string const &i: this->transactions) {
-            transactions[k++] = i;
-        }
-        for (unsigned int i = 0; i < this->transactions.size(); i++) {
-            transactiosnHashed.push_back(sha256(to_string(i)+transactions[i]));
-        }
-        string* transactionsHashes = new string[transactiosnHashed.size()];
+
+        Transaction* transactionsHashes = new string[this->transactions.size()];
         int l = 0;
-        for (string const &i: transactiosnHashed) {
+        for (Transaction const &i: this->transactions) {
             transactionsHashes[l++] = i;
         }
         string all = previousHash;
-        for (unsigned int i = 0; i < transactiosnHashed.size(); i++) {
-            all += "\n" + transactionsHashes[i];
+        for (unsigned int i = 0; i < this->transactions.size(); i++) {
+            all += "\n" + transactionsHashes[i].getHash();
         }
         return sha256(all);
     }
