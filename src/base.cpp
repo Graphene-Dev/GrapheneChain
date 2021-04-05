@@ -72,7 +72,21 @@ public:
         cout << "Not implemented yet \n";
     }
 
-    bool verifyChain(int start = 0, int end = chain.size()) {
+    bool verifyChain(int start = 0, int end = chain.size()) { //doesnt include end
+        Block* blocks = new Block[chain.size()];
+        int l = 0;
+        for (Block const &i: chain) {
+            blocks[l++] = i;
+        }
+
+        string currentHash = blocks[start].getHash();
+        for (int i = start+1; i < end; i++) {
+            if (currentHash != blocks[i].getPreviousHash()) {
+                return false;
+            }
+            currentHash = blocks[i].getHash();
+        }
+        return true;
 
     }
 
