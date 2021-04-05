@@ -1,16 +1,23 @@
 #include <iostream>
+#include "sha256.h"
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
     cout << "Base Start\n";
     //Content
-    block("block1");
+//    Block block1 = new Block("block");
 
     cout << "Base End\n";
+
+    string input = "this is a test";
+    string hash = sha256(input);
+
+    cout << "sha256('"<< input << "'):" << endl;
+    return 0;
 }
 
 
-class blockChain {
+class BlockChain {
 
 public:
     int height;
@@ -18,13 +25,13 @@ public:
 
 };
 
-class block {
+class Block {
 
 public:
 
     const String name; //temp
 
-    explicit block(const String& name = null) {
+     Block (String name = null) {
         if (name != null) {
             this->name = name;
         } else {
