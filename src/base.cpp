@@ -9,3 +9,12 @@ int main()
 
     cout << "Base End";
 }
+
+
+class blockChain {
+
+};
+
+class block {
+
+};
