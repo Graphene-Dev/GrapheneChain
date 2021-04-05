@@ -75,6 +75,11 @@ public:
     bool verifyChain(int start = 0, int end = chain.size()) {
 
     }
+
+    vector<Block> getBlocks() {
+        vector <string > vecOfStr(chain.begin(), chain.end());
+        return vecOfStr;
+    }
 };
 
 int main(int argc, char *argv[]) {
