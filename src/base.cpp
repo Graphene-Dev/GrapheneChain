@@ -1,11 +1,13 @@
 #include <iostream>
+#include <string>
+#include <vector>
+#include <list>
 #include "sha256.h"
 using namespace std;
 
 int main(int argc, char *argv[]) {
     cout << "Base Start\n";
     //Content
-//    Block block1 = new Block("block");
 
     cout << "Base End\n";
 
@@ -26,17 +28,33 @@ public:
 };
 
 class Block {
+    string previousHash;
+    list <string> transactions;
 
 public:
+    Block () {}
 
-    string name; //temp
+    void setPreviousHash() {
 
-     Block (string name = "") {
-        if (name != "") {
-            this->name = name;
-        } else {
-            this->name = "";
-        }
+    }
+
+    void addTransaction() {
+
+    }
+
+    void removeTransaction(int position) {
+        
+    }
+
+    vector<string> getTransactions() {
+
+    }
+
+    string getPreviousHash() {
+
+    }
+
+    string getHash() {
 
     }
 
