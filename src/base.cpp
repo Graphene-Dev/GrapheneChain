@@ -11,7 +11,7 @@ class Transaction {
     int amount;
 //    string date;
 public:
-    Transaction(string from, string to, int amount) {
+    Transaction(string from = "", string to = "", int amount = -1) {
         sender = from;
         receiver = to;
         this->amount = amount;
@@ -44,7 +44,10 @@ public:
     string getHash() {
         return sha256(sender+receiver+to_string(amount));
     }
-    
+
+//    Transaction() {
+//
+//    }
 };
 
 class Block {
@@ -55,7 +58,7 @@ public:
     Block () {
     }
 
-    void setPreviousHash(Transaction previousHash) {
+    void setPreviousHash(string previousHash) {
         this->previousHash = previousHash;
     }
 
@@ -78,7 +81,7 @@ public:
 
     string getHash() {
 
-        Transaction* transactionsHashes = new string[this->transactions.size()];
+        Transaction transactionsHashes[this->transactions.size()];
         int l = 0;
         for (Transaction const &i: this->transactions) {
             transactionsHashes[l++] = i;
