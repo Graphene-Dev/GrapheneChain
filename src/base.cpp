@@ -1,13 +1,12 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    cout << "Base Start";
+int main() {
+    cout << "Base Start\n";
     //Content
 
 
-    cout << "Base End";
+    cout << "Base End\n";
 }
 
 
