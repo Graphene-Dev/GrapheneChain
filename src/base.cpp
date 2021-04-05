@@ -58,11 +58,23 @@ public:
 };
 
 class BlockChain {
-    list <Block> chain;
+    static list <Block> chain;
+    int length = 0;
+
 public:
+    BlockChain() {
+    }
+    void addBlock(Block newBlock) {
+        chain.push_back(newBlock);
+    }
 
+    void removeBlock() {
+        cout << "Not implemented yet \n";
+    }
 
+    bool verifyChain(int start = 0, int end = chain.size()) {
 
+    }
 };
 
 int main(int argc, char *argv[]) {
