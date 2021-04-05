@@ -57,6 +57,13 @@ public:
 
 };
 
+class BlockChain {
+    list <Block> chain;
+public:
+
+
+
+};
 
 int main(int argc, char *argv[]) {
     cout << "Base Start\n";
@@ -71,10 +78,4 @@ int main(int argc, char *argv[]) {
 }
 
 
-class BlockChain {
 
-public:
-    int height;
-
-
-};
