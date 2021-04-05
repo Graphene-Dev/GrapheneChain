@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     string input = "this is a test";
     string hash = sha256(input);
 
-    cout << "sha256('"<< input << "'):" << endl;
+    cout << "sha256('"<< input << "'):" << hash <<  endl;
     return 0;
 }
 
@@ -29,13 +29,13 @@ class Block {
 
 public:
 
-    const String name; //temp
+    string name; //temp
 
-     Block (String name = null) {
-        if (name != null) {
+     Block (string name = "") {
+        if (name != "") {
             this->name = name;
         } else {
-            this->name = "default";
+            this->name = "";
         }
 
     }
