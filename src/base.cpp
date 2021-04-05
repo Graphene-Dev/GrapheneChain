@@ -6,8 +6,43 @@
 using namespace std;
 
 class Transaction {
+    string sender;
+    string receiver;
+    int amount;
+//    string date;
 public:
-    Transaction() {
+    Transaction(string from, string to, int amount) {
+        sender = from;
+        receiver = to;
+        this->amount = amount;
+    }
+    int getAmount () {
+        return amount;
+    }
+    void setAmount (int amount) {
+        this->amount = amount;
+    }
+
+    string getSender() {
+        return sender;
+    }
+    void setSender(string from) {
+        sender = from;
+    }
+
+    string getReceiver() {
+        return receiver;
+    }
+    void setReceiver(string to) {
+        receiver = to;
+    }
+
+    string getTransaction() {
+
+    }
+
+    string getHash() {
+        
     }
     
 };
