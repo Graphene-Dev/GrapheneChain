@@ -4,6 +4,14 @@
 #include <list>
 #include "sha256.h"
 using namespace std;
+
+class Transaction {
+public:
+    Transaction() {
+    }
+    
+};
+
 class Block {
     string previousHash = "";
     list <string> transactions;
@@ -99,9 +107,28 @@ public:
 int main(int argc, char *argv[]) {
     cout << "Base Start\n";
     //Content
-    Block block1;
-    block1.addTransaction("Techy pays Stealth 100");
-    cout << block1.getHash() + "\n";
+
+    BlockChain chain;
+    while (true) {
+        cout << "Next action?";
+        string input;
+        cin >> input;
+        if (input == "exit") {
+            break;
+        }
+        if (input == "newBlock") {
+
+        }
+        if (input == "newTransaction") {
+
+        }
+        if (input == "displayChain") {
+
+        }
+        if (input == "displayCurrentBlock") {
+
+        }
+    }
 
 
     cout << "Base End\n";
