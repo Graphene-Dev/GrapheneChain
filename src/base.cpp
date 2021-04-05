@@ -12,8 +12,13 @@ int main() {
 
 class blockChain {
 
+public:
+    int height;
+
 };
 
 class block {
 
+public:
+    
 };
