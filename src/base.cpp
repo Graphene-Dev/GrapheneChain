@@ -56,7 +56,25 @@ public:
     }
 
     string getHash() {
-        
+        list <string> transactiosnHashed;
+        string transactions[transactions.size()];
+        int k = 0;
+        for (string const &i: this->transactions) {
+            transactions[k++] = i;
+        }
+        for (int i = 0; i < transactions.size(); i++) {
+            transactiosnHashed.push_back(sha256(to_string(i)+transactions[i]));
+        }
+        string transactionsHashes[transactions.size()];
+        int l = 0;
+        for (string const &i: transactiosnHashed) {
+            transactionsHashes[l++] = i;
+        }
+        string all = previousHash;
+        for (int i = 0; i < transactiosnHashed.size(); i++) {
+            all += "\n" + transactionsHashes[i];
+        }
+        return sha256(all);
     }
 
 };
