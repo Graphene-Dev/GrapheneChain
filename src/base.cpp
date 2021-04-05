@@ -77,7 +77,7 @@ public:
     }
 
     vector<Block> getBlocks() {
-        vector <string > vecOfStr(chain.begin(), chain.end());
+        vector <Block> vecOfStr(chain.begin(), chain.end());
         return vecOfStr;
     }
 };
