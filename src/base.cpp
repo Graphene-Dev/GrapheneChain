@@ -162,6 +162,9 @@ public:
     }
 };
     
+void userActions() {
+
+}
 
 int main(int argc, char *argv[]) {
     cout << "Base Start\n";
@@ -183,7 +186,7 @@ int main(int argc, char *argv[]) {
             block = *new Block;
             block.setPreviousHash(hash);
             block.setDifficulty(chain.getDifficulty());
-            cout << "The current difficulty is " + block.getDifficulty();
+            cout << "The current difficulty is " << block.getDifficulty();
         }
         if (input == "newTransaction") {
             string from;
