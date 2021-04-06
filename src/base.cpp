@@ -126,7 +126,7 @@ public:
    int getDifficulty() {
        return difficulty;
     }
-    
+
     void addBlock(Block newBlock) {
         chain.push_back(newBlock);
         difficulty = hashrate^2;
@@ -238,10 +238,9 @@ int main(int argc, char *argv[]) {
 //    }
 
 
-
+    thread_obj.join();
 
     cout << "Base End\n";
+
+    return 0;
 }
-
-
-
