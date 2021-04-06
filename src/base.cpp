@@ -177,7 +177,7 @@ int main(int argc, char *argv[]) {
             string hash = block.getHash();
             block = *new Block;
             block.setPreviousHash(hash);
-            block.setDifficulty(chain.getDifficulty);
+            block.setDifficulty(chain.getDifficulty());
         }
         if (input == "newTransaction") {
             string from;
