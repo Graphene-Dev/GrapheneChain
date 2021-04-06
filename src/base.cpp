@@ -1,3 +1,15 @@
+/*
+ *  Created by StealthHydra179 and TechyGuy17
+ *
+ * If you found this code useful please donate here:
+ *
+ * This code is distributed to help others, we are not liable for any errors, if you find one put it in
+ * the errors page on GitHub
+ *
+ * Thank you
+ */
+
+
 #include <iostream>
 #include <string>
 #include <vector>
