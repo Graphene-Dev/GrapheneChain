@@ -232,14 +232,7 @@ void userActions() {
         }
     }
 }
-int getOsName()
-{
-#ifdef _WIN32
-    return 1;
-#else
-    return -1;
-#endif
-}
+
 int main(int argc, char *argv[]) {
     cout << "Base Start\n";
     //Content
@@ -250,11 +243,8 @@ int main(int argc, char *argv[]) {
 //        cout << e.what();
 //    }
     while (running) {
-        if (getOsName() == 1) {
-            _sleep(10000);
-        } else {
-            sleep(10000);
-        }
+            Sleep(10000);
+
 
         chain.addBlock(block);
         string hash = block.getHash();
