@@ -114,7 +114,7 @@ public:
         for (unsigned int i = 0; i < this->transactions.size(); i++) {
             all += "\n" + transactionsHashes[i].getHash();
         }
-//        whilte (sha256(all) difficulty)
+//        while (sha256(all) > (hex << difficulty))
         current_time = time(NULL);
         return sha256(all);
     }
