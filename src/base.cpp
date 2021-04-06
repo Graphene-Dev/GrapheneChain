@@ -62,7 +62,7 @@ class Block {
     string previousHash;
     list <Transaction> transactions;
     int difficulty;
-
+    string currentHash = getHash();
 public:
     Block () {
     }
@@ -106,6 +106,10 @@ public:
         }
         return sha256(all);
     }
+    //  void correctHash() {
+    //     if(currentHash <)
+    // }
+    // Work in progress
 
 };
 
@@ -179,6 +183,7 @@ int main(int argc, char *argv[]) {
             block = *new Block;
             block.setPreviousHash(hash);
             block.setDifficulty(chain.getDifficulty());
+            cout << "The current difficulty is " + block.getDifficulty();
         }
         if (input == "newTransaction") {
             string from;
