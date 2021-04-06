@@ -21,7 +21,6 @@ class Transaction {
     string sender;
     string receiver;
     int amount;
-//    string date;
 public:
     Transaction(string from = "", string to = "", int amount = -1) {
         sender = from;
@@ -57,9 +56,6 @@ public:
         return sha256(sender+receiver+to_string(amount));
     }
 
-//    Transaction() {
-//
-//    }
 };
 
 class Block {
@@ -187,22 +183,22 @@ int main(int argc, char *argv[]) {
             for(unsigned int i=0; i < a.size(); i++) {
                 Block current = a.at(i);
                 cout << "Block " << i+1;
-                cout << endl;
+                cout << "\n";
                 cout << "Previous Hash: " << current.getPreviousHash();
-                cout << endl;
+                cout << "\n";
                 vector<Transaction> a = current.getTransactions();
                 cout << "Transactions:\n";
                 for(unsigned int i=0; i < a.size(); i++)
-                    cout << i << ". " << a.at(i).getTransaction() << '\n';
-                cout << "Hash: " << current.getHash() << endl;
-                cout << endl;
+                    cout << i << ". " << a.at(i).getTransaction() << "\n";
+                cout << "Hash: " << current.getHash() << "\n";
+                cout << "\n";
             }
         }
         if (input == "displayCurrentBlock") {
-            cout << "Hash" << block.getPreviousHash() << "/n";
+            cout << "Hash: " << block.getPreviousHash() << "\n";
             vector<Transaction> a = block.getTransactions();
             for(unsigned int i=0; i < a.size(); i++)
-                cout << i+1 << ". " << a.at(i).getTransaction() << '\n';
+                cout << i+1 << ". " << a.at(i).getTransaction() << "\n";
             cout << block.getHash();
             cout << "\n";
         }
