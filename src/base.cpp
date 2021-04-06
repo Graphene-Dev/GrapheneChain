@@ -184,7 +184,7 @@ void userActions() {
             block = *new Block;
             block.setPreviousHash(hash);
             block.setDifficulty(chain.getDifficulty());
-            cout << "The current difficulty is " << block.getDifficulty();
+            cout << "The current difficulty is " << block.getDifficulty() << "\n";
         }
         if (input == "newTransaction") {
             string from;
