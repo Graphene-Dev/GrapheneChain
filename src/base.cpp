@@ -14,6 +14,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <thread>
 #include "sha256.h"
 using namespace std;
 
@@ -161,18 +162,14 @@ public:
         return vecOfStr;
     }
 };
-    
+
+
+
+BlockChain chain;
+Block block;
+
+
 void userActions() {
-
-}
-
-int main(int argc, char *argv[]) {
-    cout << "Base Start\n";
-    //Content
-
-    BlockChain chain;
-    Block block;
-    block.setPreviousHash("");
     while (true) {
         cout << "Next action? ";
         string input;
@@ -227,13 +224,21 @@ int main(int argc, char *argv[]) {
             cout << "\n";
         }
     }
+}
 
-
+int main(int argc, char *argv[]) {
+    cout << "Base Start\n";
+    //Content
+    block.setPreviousHash("");
+//    try {
+    thread thread_obj(userActions);
+//    } catch  (exception e){
+//        cout << e.what();
+//    }
    
 
 
     cout << "Base End\n";
-    return 0;
 }
 
 
