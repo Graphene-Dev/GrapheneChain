@@ -246,7 +246,11 @@ int main(int argc, char *argv[]) {
 //        cout << e.what();
 //    }
     while (running) {
-            Sleep(10000);
+        #ifdef _WIN32
+            _sleep(10000);
+        #else
+            usleep(10000);
+        #endif
 
 
         chain.addBlock(block);
