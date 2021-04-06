@@ -21,6 +21,7 @@
 #include <list>
 #include <thread>
 #include "sha256.h"
+#include <ctime>
 using namespace std;
 
 class Transaction {
@@ -69,6 +70,7 @@ class Block {
     list <Transaction> transactions;
     int difficulty;
     string currentHash = getHash();
+
 public:
     Block () {
     }
@@ -110,6 +112,7 @@ public:
         for (unsigned int i = 0; i < this->transactions.size(); i++) {
             all += "\n" + transactionsHashes[i].getHash();
         }
+//        whilte (sha256(all) difficulty)
         return sha256(all);
     }
     //  void correctHash() {
@@ -134,7 +137,7 @@ public:
 
     void addBlock(Block newBlock) {
         chain.push_back(newBlock);
-        difficulty = hashrate^2;
+        difficulty = hashrate*hashrate;
     }
 
     void removeBlock() {
