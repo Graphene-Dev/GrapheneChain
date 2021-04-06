@@ -14,6 +14,7 @@
 #else
 #include <unistd.h>
 #endif
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -242,7 +243,7 @@ int main(int argc, char *argv[]) {
 //        cout << e.what();
 //    }
     while (running) {
-        sleep(10000);
+        _sleep(10000);
         chain.addBlock(block);
         string hash = block.getHash();
         block = *new Block;
