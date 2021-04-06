@@ -3,7 +3,7 @@
  *
  * If you found this code useful please donate here:
  *
- * This code is distributed to help others, we are not liable for any errors, if you find one put it in
+ * This code is distributed under the GPL 3 license, to read it refer to https://github.com/Graphene-Dev/GrapheneChain/blob/master/LICENSE . if you find an error put it in
  * the errors page on GitHub
  *
  * Thank you
@@ -144,6 +144,7 @@ public:
         return vecOfStr;
     }
 };
+    
 
 int main(int argc, char *argv[]) {
     cout << "Base Start\n";

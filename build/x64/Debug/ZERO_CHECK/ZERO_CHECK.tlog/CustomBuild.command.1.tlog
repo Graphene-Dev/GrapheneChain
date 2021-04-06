@@ -1,0 +1,10 @@
+^C:\USERS\TEOLU\DOWNLOADS\GRAPHENECHAIN-MASTER\BUILD\CMAKEFILES\8EE78E51162A6BC80648E58F9C90CA8E\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/teolu/Downloads/GrapheneChain-master -BC:/Users/teolu/Downloads/GrapheneChain-master/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/teolu/Downloads/GrapheneChain-master/build/GrapheneChain.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
