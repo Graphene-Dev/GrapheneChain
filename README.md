@@ -21,3 +21,6 @@ to create a custom cryptocurrency from scratch.
 - `cmake -G "Visual Studio 16 2019" -A x64 ..`
 - `MSBuild GrapheneChain.sln`
 The binaries will be in `Debug` folder when it is done
+  
+* Linux
+- uncomment line 5 in cmakelists.txt

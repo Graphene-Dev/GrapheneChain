@@ -167,7 +167,7 @@ public:
 
 BlockChain chain;
 Block block;
-
+bool running = true;
 
 void userActions() {
     while (true) {
@@ -175,6 +175,7 @@ void userActions() {
         string input;
         cin >> input;
         if (input == "exit") {
+            running = false;
             break;
 //cout << "test";
         }
@@ -236,7 +237,9 @@ int main(int argc, char *argv[]) {
 //    } catch  (exception e){
 //        cout << e.what();
 //    }
+    while (running) {
 
+    }
 
     thread_obj.join();
 
