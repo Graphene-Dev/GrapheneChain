@@ -118,12 +118,13 @@ class BlockChain {
 public:
     BlockChain() {
     }
-   void getDifficulty(int difficulty) {
-       difficulty = hashrate ^ 2;
+   int getDifficulty() {
+       return difficulty;
     }
     
     void addBlock(Block newBlock) {
         chain.push_back(newBlock);
+        difficulty = hashrate^2;
     }
 
     void removeBlock() {
