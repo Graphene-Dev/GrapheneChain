@@ -28,6 +28,7 @@ class Transaction {
     string sender;
     string receiver;
     int amount;
+    time_t current_time = time(NULL);
 public:
     Transaction(string from = "", string to = "", int amount = -1) {
         sender = from;
@@ -70,6 +71,7 @@ class Block {
     list <Transaction> transactions;
     int difficulty;
     string currentHash = getHash();
+    time_t current_time;
 
 public:
     Block () {
@@ -113,6 +115,7 @@ public:
             all += "\n" + transactionsHashes[i].getHash();
         }
 //        whilte (sha256(all) difficulty)
+        current_time = time(NULL);
         return sha256(all);
     }
     //  void correctHash() {
