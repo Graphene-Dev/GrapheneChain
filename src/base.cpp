@@ -128,7 +128,7 @@ class BlockChain {
 public:
     BlockChain() {
     }
-   int getDifficulty() {
+    int getDifficulty() {
        return difficulty;
     }
 
@@ -218,7 +218,7 @@ void userActions() {
                 for(unsigned int i=0; i < a.size(); i++)
                     cout << i << ". " << a.at(i).getTransaction() << "\n";
                 cout << "Hash: " << current.getHash() << "\n";
-                cout << "diff: " << block.getHash() << "\n";
+                cout << "diff: " << current.getDifficulty() << "\n";
                 cout << "\n";
             }
         }
