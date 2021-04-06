@@ -9,7 +9,11 @@
  * Thank you
  */
 
-
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #include <iostream>
 #include <string>
 #include <vector>
@@ -238,7 +242,7 @@ int main(int argc, char *argv[]) {
 //        cout << e.what();
 //    }
     while (running) {
-        _sleep(10000);
+        sleep(10000);
         chain.addBlock(block);
         string hash = block.getHash();
         block = *new Block;
