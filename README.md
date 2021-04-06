@@ -22,5 +22,3 @@ to create a custom cryptocurrency from scratch.
 - `MSBuild GrapheneChain.sln`
 The binaries will be in `Debug` folder when it is done
   
-* Linux
-- uncomment line 5 in cmakelists.txt

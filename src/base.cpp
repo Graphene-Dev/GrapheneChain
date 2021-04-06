@@ -179,14 +179,14 @@ void userActions() {
             break;
 //cout << "test";
         }
-        if (input == "newBlock") {
-            chain.addBlock(block);
-            string hash = block.getHash();
-            block = *new Block;
-            block.setPreviousHash(hash);
-            block.setDifficulty(chain.getDifficulty());
-            cout << "The current difficulty is " << block.getDifficulty() << "\n";
-        }
+//        if (input == "newBlock") {
+//            chain.addBlock(block);
+//            string hash = block.getHash();
+//            block = *new Block;
+//            block.setPreviousHash(hash);
+//            block.setDifficulty(chain.getDifficulty());
+//            cout << "The current difficulty is " << block.getDifficulty() << "\n";
+//        }
         if (input == "newTransaction") {
             string from;
             string to;
@@ -238,7 +238,13 @@ int main(int argc, char *argv[]) {
 //        cout << e.what();
 //    }
     while (running) {
-
+        _sleep(10000);
+        chain.addBlock(block);
+        string hash = block.getHash();
+        block = *new Block;
+        block.setPreviousHash(hash);
+        block.setDifficulty(chain.getDifficulty());
+        cout << "The current difficulty is " << block.getDifficulty() << "\n";
     }
 
     thread_obj.join();
