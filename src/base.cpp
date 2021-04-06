@@ -114,16 +114,14 @@ class BlockChain {
 //    int length = 0;
     int difficulty;
     int hashrate = 1000;
-//    int hash = .getHash();
+
 public:
     BlockChain() {
     }
-//    void getDifficulty(int difficulty) {
-//        difficulty = hashrate / 4;
-//        if(hash < difficulty) {
-//
-//        }
-//    }
+   void getDifficulty(int difficulty) {
+       difficulty = hashrate ^ 2;
+    }
+    
     void addBlock(Block newBlock) {
         chain.push_back(newBlock);
     }
@@ -179,6 +177,7 @@ int main(int argc, char *argv[]) {
             string hash = block.getHash();
             block = *new Block;
             block.setPreviousHash(hash);
+            block.setDifficulty(chain.getDifficulty);
         }
         if (input == "newTransaction") {
             string from;
