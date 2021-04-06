@@ -66,8 +66,8 @@ class Block {
 public:
     Block () {
     }
-    void getDifficulty() {
-    
+    int getDifficulty() {
+        return difficulty;
     };
     void setDifficulty(int difficulty) {
         this->difficulty = difficulty;
@@ -114,17 +114,16 @@ class BlockChain {
 //    int length = 0;
     int difficulty;
     int hashrate = 1000;
-    int hash = Block.getHash();
+//    int hash = .getHash();
 public:
     BlockChain() {
     }
-    void difficulty(int difficulty) {
-        difficulty = hashrate / 4;
-        if(hash < difficulty)
-        {
-
-        }
-    }
+//    void getDifficulty(int difficulty) {
+//        difficulty = hashrate / 4;
+//        if(hash < difficulty) {
+//
+//        }
+//    }
     void addBlock(Block newBlock) {
         chain.push_back(newBlock);
     }
