@@ -81,7 +81,7 @@ public:
 
     string getHash() {
 
-        Transaction transactionsHashes[this->transactions.size()];
+        Transaction* transactionsHashes = new Transaction[this->transactions.size()];
         int l = 0;
         for (Transaction const &i: this->transactions) {
             transactionsHashes[l++] = i;
@@ -96,8 +96,8 @@ public:
 };
 
 class BlockChain {
-    static list <Block> chain;
-    int length = 0;
+    list <Block> chain;
+//    int length = 0;
 
 public:
     BlockChain() {
@@ -110,7 +110,10 @@ public:
         cout << "Not implemented yet \n";
     }
 
-    bool verifyChain(int start = 0, int end = chain.size()) { //doesnt include end
+    bool verifyChain(int start = 0, int end = -1) { //doesnt include end
+        if (end == -1) {
+            end = chain.size();
+        }
         Block* blocks = new Block[chain.size()];
         int l = 0;
         for (Block const &i: chain) {
@@ -139,6 +142,8 @@ int main(int argc, char *argv[]) {
     //Content
 
     BlockChain chain;
+    Block block;
+    block.setPreviousHash("");
     while (true) {
         cout << "Next action?";
         string input;
@@ -147,16 +152,47 @@ int main(int argc, char *argv[]) {
             break;
         }
         if (input == "newBlock") {
-
+            chain.addBlock(block);
+            string hash = block.getHash();
+            block = *new Block;
+            block.setPreviousHash(hash);
         }
         if (input == "newTransaction") {
-
+            string from;
+            string to;
+            int amount;
+            cout << "From?";
+            cin >> from;
+            cout << "To?";
+            cin >> to;
+            cout << "Amount?";
+            cin >> amount;
+            Transaction newTransaction(from, to, amount);
+            block.addTransaction(newTransaction);
         }
         if (input == "displayChain") {
-
+            vector<Block> a = chain.getBlocks();
+            for(unsigned int i=0; i < a.size(); i++) {
+                Block current = a.at(i);
+                cout << "Block " << i+1;
+                cout << endl;
+                cout << "Previous Hash: " << current.getPreviousHash();
+                cout << endl;
+                vector<Transaction> a = current.getTransactions();
+                cout << "Transactions:\n";
+                for(unsigned int i=0; i < a.size(); i++)
+                    cout << i << ". " << a.at(i).getTransaction() << '\n';
+                cout << "Hash: " << current.getHash() << endl;
+                cout << endl;
+            }
         }
         if (input == "displayCurrentBlock") {
-
+            cout << "Hash" << block.getPreviousHash() << "/n";
+            vector<Transaction> a = block.getTransactions();
+            for(unsigned int i=0; i < a.size(); i++)
+                cout << i+1 << ". " << a.at(i).getTransaction() << '\n';
+            cout << block.getHash();
+            cout << "\n";
         }
     }
 
