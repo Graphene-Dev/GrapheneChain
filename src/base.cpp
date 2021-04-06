@@ -171,7 +171,7 @@ int main(int argc, char *argv[]) {
     Block block;
     block.setPreviousHash("");
     while (true) {
-        cout << "Next action?";
+        cout << "Next action? ";
         string input;
         cin >> input;
         if (input == "exit") {
@@ -211,6 +211,7 @@ int main(int argc, char *argv[]) {
                 for(unsigned int i=0; i < a.size(); i++)
                     cout << i << ". " << a.at(i).getTransaction() << "\n";
                 cout << "Hash: " << current.getHash() << "\n";
+                cout << "diff: " << block.getHash() << "\n";
                 cout << "\n";
             }
         }
