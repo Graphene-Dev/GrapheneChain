@@ -61,11 +61,17 @@ public:
 class Block {
     string previousHash;
     list <Transaction> transactions;
+    int difficulty;
 
 public:
     Block () {
     }
-
+    void getDifficulty() {
+    
+    };
+    void setDifficulty(int difficulty) {
+        this->difficulty = difficulty;
+    };
     void setPreviousHash(string previousHash) {
         this->previousHash = previousHash;
     }
@@ -106,9 +112,18 @@ public:
 class BlockChain {
     list <Block> chain;
 //    int length = 0;
-
+    int difficulty;
+    int hashrate = 1000;
+    int hash = Block.getHash();
 public:
     BlockChain() {
+    }
+    void difficulty(int difficulty) {
+        difficulty = hashrate / 4;
+        if(hash < difficulty)
+        {
+
+        }
     }
     void addBlock(Block newBlock) {
         chain.push_back(newBlock);
@@ -204,6 +219,9 @@ int main(int argc, char *argv[]) {
             cout << "\n";
         }
     }
+
+
+   
 
 
     cout << "Base End\n";
