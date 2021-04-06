@@ -177,52 +177,52 @@ void userActions() {
         if (input == "exit") {
             break;
         }
-        if (input == "newBlock") {
-            chain.addBlock(block);
-            string hash = block.getHash();
-            block = *new Block;
-            block.setPreviousHash(hash);
-            block.setDifficulty(chain.getDifficulty());
-            cout << "The current difficulty is " << block.getDifficulty();
-        }
-        if (input == "newTransaction") {
-            string from;
-            string to;
-            int amount;
-            cout << "From?";
-            cin >> from;
-            cout << "To?";
-            cin >> to;
-            cout << "Amount?";
-            cin >> amount;
-            Transaction newTransaction(from, to, amount);
-            block.addTransaction(newTransaction);
-        }
-        if (input == "displayChain") {
-            vector<Block> a = chain.getBlocks();
-            for(unsigned int i=0; i < a.size(); i++) {
-                Block current = a.at(i);
-                cout << "Block " << i+1;
-                cout << "\n";
-                cout << "Previous Hash: " << current.getPreviousHash();
-                cout << "\n";
-                vector<Transaction> a = current.getTransactions();
-                cout << "Transactions:\n";
-                for(unsigned int i=0; i < a.size(); i++)
-                    cout << i << ". " << a.at(i).getTransaction() << "\n";
-                cout << "Hash: " << current.getHash() << "\n";
-                cout << "diff: " << block.getHash() << "\n";
-                cout << "\n";
-            }
-        }
-        if (input == "displayCurrentBlock") {
-            cout << "Hash: " << block.getPreviousHash() << "\n";
-            vector<Transaction> a = block.getTransactions();
-            for(unsigned int i=0; i < a.size(); i++)
-                cout << i+1 << ". " << a.at(i).getTransaction() << "\n";
-            cout << block.getHash();
-            cout << "\n";
-        }
+//        if (input == "newBlock") {
+//            chain.addBlock(block);
+//            string hash = block.getHash();
+//            block = *new Block;
+//            block.setPreviousHash(hash);
+//            block.setDifficulty(chain.getDifficulty());
+//            cout << "The current difficulty is " << block.getDifficulty();
+//        }
+//        if (input == "newTransaction") {
+//            string from;
+//            string to;
+//            int amount;
+//            cout << "From?";
+//            cin >> from;
+//            cout << "To?";
+//            cin >> to;
+//            cout << "Amount?";
+//            cin >> amount;
+//            Transaction newTransaction(from, to, amount);
+//            block.addTransaction(newTransaction);
+//        }
+//        if (input == "displayChain") {
+//            vector<Block> a = chain.getBlocks();
+//            for(unsigned int i=0; i < a.size(); i++) {
+//                Block current = a.at(i);
+//                cout << "Block " << i+1;
+//                cout << "\n";
+//                cout << "Previous Hash: " << current.getPreviousHash();
+//                cout << "\n";
+//                vector<Transaction> a = current.getTransactions();
+//                cout << "Transactions:\n";
+//                for(unsigned int i=0; i < a.size(); i++)
+//                    cout << i << ". " << a.at(i).getTransaction() << "\n";
+//                cout << "Hash: " << current.getHash() << "\n";
+//                cout << "diff: " << block.getHash() << "\n";
+//                cout << "\n";
+//            }
+//        }
+//        if (input == "displayCurrentBlock") {
+//            cout << "Hash: " << block.getPreviousHash() << "\n";
+//            vector<Transaction> a = block.getTransactions();
+//            for(unsigned int i=0; i < a.size(); i++)
+//                cout << i+1 << ". " << a.at(i).getTransaction() << "\n";
+//            cout << block.getHash();
+//            cout << "\n";
+//        }
     }
 }
 
