@@ -244,9 +244,8 @@ int main(int argc, char *argv[]) {
         block = *new Block;
         block.setPreviousHash(hash);
         block.setDifficulty(chain.getDifficulty());
-        cout << "The current difficulty is " << block.getDifficulty() << "\n";
+//        cout << "The current difficulty is " << block.getDifficulty() << "\n";
     }
-
     thread_obj.join();
 
     cout << "Base End\n";
