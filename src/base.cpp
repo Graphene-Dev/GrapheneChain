@@ -154,6 +154,9 @@ public:
             return hash;
         }
     }
+    string forceFindNewHash() {
+        
+    }
 
 
 };
@@ -163,6 +166,7 @@ class BlockChain {
 //    int length = 0;
     int difficulty;
     int hashrate = 1000;
+    int targetTime = 10; //in seconds
 
 public:
     BlockChain() {
