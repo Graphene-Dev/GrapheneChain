@@ -316,19 +316,19 @@ void userActions() {
 int main() {
     cout << "Base Start\n";
 //    //Content
-//    block.setPreviousHash("");
-//    thread thread_obj(userActions);
-//    while (running) {
-//        if (chain.getBlockhashed()) {
-//            chain.pushBlock();
-//            chain.addBlock(block);
-//            string hash = block.getHash();
-//            block = *new Block;
-//            block.setPreviousHash(hash);
-//            block.setDifficulty(chain.getDifficulty());
-//        }
-//    }
-//    thread_obj.join();
+    block.setPreviousHash("");
+    thread thread_obj(userActions);
+    while (running) {
+        if (chain.getBlockhashed()) {
+            chain.pushBlock();
+            chain.addBlock(block);
+            string hash = block.getHash();
+            block = *new Block;
+            block.setPreviousHash(hash);
+            block.setDifficulty(chain.getDifficulty());
+        }
+    }
+    thread_obj.join();
 
     cout << "Base End\n";
 
