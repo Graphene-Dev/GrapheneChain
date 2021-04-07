@@ -22,6 +22,7 @@
 #include <thread>
 #include "sha256.h"
 #include <ctime>
+#include <sstream>
 using namespace std;
 
 class Transaction {
@@ -129,10 +130,7 @@ public:
         current_time = time(NULL);
         return sha256(all);
     }
-    //  void correctHash() {
-    //     if(currentHash <)
-    // }
-    // Work in progress
+
 
 };
 
