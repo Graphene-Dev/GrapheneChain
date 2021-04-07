@@ -128,6 +128,8 @@ public:
 
     string getHash() {
         if (!found) {
+            triedFillers.clear();
+            fillerHashes.clear();
             Transaction *transactionsHashes = new Transaction[this->transactions.size()];
             int l = 0;
             for (Transaction const &i: this->transactions) {
@@ -155,7 +157,7 @@ public:
         }
     }
     string forceFindNewHash() {
-        
+
     }
 
 
