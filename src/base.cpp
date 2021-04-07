@@ -72,25 +72,44 @@ class Block {
     list <Transaction> transactions;
     int difficulty;
     string currentHash = getHash();
-    time_t current_time;
+    time_t timeFound;
     list <int> triedFillers;
     list <string> fillerHashes;
     int filler = 0;
+    bool found = false;
+    string hash;
 
 public:
     Block () {
+    }
+    bool foundHash() {
+        return found;
+    }
+    int getFiller() {
+        return filler;
+    }
+    vector <string> getFillerHashResults() {
+        vector <string > vecOfStr(fillerHashes.begin(), fillerHashes.end());
+        return vecOfStr;
+    }
+    vector <string> triedFillerHashes() {
+        vector <string > vecOfStr(triedFillers.begin(), triedFillers.end());
+        return vecOfStr;
     }
     int getDifficulty() {
         return difficulty;
     };
     void setDifficulty(int difficulty) {
+        found = false;
         this->difficulty = difficulty;
     };
     void setPreviousHash(string previousHash) {
+        found = false;
         this->previousHash = previousHash;
     }
 
     void addTransaction(Transaction transaction) {
+        found = false;
         this->transactions.push_back(transaction);
     }
 
@@ -108,27 +127,32 @@ public:
     }
 
     string getHash() {
+        if (!found) {
+            Transaction *transactionsHashes = new Transaction[this->transactions.size()];
+            int l = 0;
+            for (Transaction const &i: this->transactions) {
+                transactionsHashes[l++] = i;
+            }
+            string all = previousHash;
+            for (unsigned int i = 0; i < this->transactions.size(); i++) {
+                all += "\n" + transactionsHashes[i].getHash();
+            }
 
-        Transaction* transactionsHashes = new Transaction[this->transactions.size()];
-        int l = 0;
-        for (Transaction const &i: this->transactions) {
-            transactionsHashes[l++] = i;
-        }
-        string all = previousHash;
-        for (unsigned int i = 0; i < this->transactions.size(); i++) {
-            all += "\n" + transactionsHashes[i].getHash();
-        }
+            stringstream ss;
+            ss << hex << difficulty;
+            string diff = ss.str();
+            while (sha256(all + to_string(filler)) < diff) {
+                triedFillers.push_back(filler);
+                fillerHashes.push_back(sha256(all + to_string(filler)));
+                filler++;
+            }
+            timeFound = time(NULL);
+            hash = sha256(all);
 
-        stringstream ss;
-        ss << hex << difficulty;
-        string diff = ss.str();
-        while (sha256(all+to_string(filler)) < diff) {
-            triedFillers.push_back(filler);
-            fillerHashes.push_back(sha256(all+to_string(filler)));
-            filler++;
+            return sha256(all);
+        } else {
+            return hash;
         }
-        current_time = time(NULL);
-        return sha256(all);
     }
 
 
