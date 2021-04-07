@@ -157,7 +157,8 @@ public:
         }
     }
     string forceFindNewHash() {
-
+        found = false;
+        return getHash();
     }
 
 
