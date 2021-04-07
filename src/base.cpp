@@ -36,6 +36,7 @@ public:
         receiver = to;
         this->amount = amount;
     }
+
     int getAmount () {
         return amount;
     }
@@ -82,20 +83,25 @@ class Block {
 public:
     Block () {
     }
+
     bool foundHash() {
         return found;
     }
+
     int getFiller() {
         return filler;
     }
+
     vector <string> getFillerHashResults() {
         vector <string > vecOfStr(fillerHashes.begin(), fillerHashes.end());
         return vecOfStr;
     }
-    vector <string> triedFillerHashes() {
-        vector <string > vecOfStr(triedFillers.begin(), triedFillers.end());
+
+    vector <int> triedFillerHashes() {
+        vector <int> vecOfStr(triedFillers.begin(), triedFillers.end());
         return vecOfStr;
     }
+
     int getDifficulty() {
         return difficulty;
     };
@@ -103,16 +109,19 @@ public:
         found = false;
         this->difficulty = difficulty;
     };
+
     void setPreviousHash(string previousHash) {
         found = false;
         this->previousHash = previousHash;
+    }
+    string getPreviousHash() {
+        return previousHash;
     }
 
     void addTransaction(Transaction transaction) {
         found = false;
         this->transactions.push_back(transaction);
     }
-
     void removeTransaction(int position) {
         cout << "Not implemented yet \n";
     }
@@ -122,19 +131,17 @@ public:
         return vecOfStr;
     }
 
-    string getPreviousHash() {
-        return previousHash;
-    }
-
     string getHash() {
         if (!found) {
             triedFillers.clear();
             fillerHashes.clear();
+
             Transaction *transactionsHashes = new Transaction[this->transactions.size()];
             int l = 0;
             for (Transaction const &i: this->transactions) {
                 transactionsHashes[l++] = i;
             }
+
             string all = previousHash;
             for (unsigned int i = 0; i < this->transactions.size(); i++) {
                 all += "\n" + transactionsHashes[i].getHash();
@@ -148,10 +155,12 @@ public:
                 fillerHashes.push_back(sha256(all + to_string(filler)));
                 filler++;
             }
+
             timeFound = time(NULL);
             hash = sha256(all);
 
             return sha256(all);
+
         } else {
             return hash;
         }
@@ -160,29 +169,60 @@ public:
         found = false;
         return getHash();
     }
-
-
 };
 
 class BlockChain {
     list <Block> chain;
 //    int length = 0;
-    int difficulty;
+    int difficulty = 10000;
     int hashrate = 1000;
     int targetTime = 10; //in seconds
+    Block currentHashedBlock;
+    bool blockHashed = true;
+    bool ready = true;
 
+
+    void setDifficulty() {
+
+    }
 public:
     BlockChain() {
     }
-    int getDifficulty() {
-       return difficulty;
+
+    void setTargetTime(int target) {
+        targetTime = target;
     }
+    int getTargetTime() {
+        return targetTime;
+    }
+
+    int getDifficulty() {
+        return difficulty;
+    }
+
+    Block getCurrentBlockHashed() {
+        return currentHashedBlock;
+    }
+
+    bool getBlockhashed() {
+        return blockHashed;
+    }
+    void pushBlock() {
+        if (blockHashed) {
+            chain.push_back(currentHashedBlock);
+            setDifficulty();
+            ready = true;
+        }
+    }
+
 
     void addBlock(Block newBlock) {
-        chain.push_back(newBlock);
-        difficulty = hashrate*hashrate;
-    }
+        blockHashed = false;
+        ready = false;
+        currentHashedBlock = newBlock;
+//        difficulty = hashrate*hashrate;
 
+    }
     void removeBlock() {
         cout << "Not implemented yet \n";
     }
@@ -200,6 +240,9 @@ public:
         string currentHash = blocks[start].getHash();
         for (int i = start+1; i < end; i++) {
             if (currentHash != blocks[i].getPreviousHash()) {
+                return false;
+            }
+            if (!blocks[i].foundHash()) {
                 return false;
             }
             currentHash = blocks[i].getHash();
@@ -228,16 +271,7 @@ void userActions() {
         if (input == "exit") {
             running = false;
             break;
-//cout << "test";
         }
-//        if (input == "newBlock") {
-//            chain.addBlock(block);
-//            string hash = block.getHash();
-//            block = *new Block;
-//            block.setPreviousHash(hash);
-//            block.setDifficulty(chain.getDifficulty());
-//            cout << "The current difficulty is " << block.getDifficulty() << "\n";
-//        }
         if (input == "newTransaction") {
             string from;
             string to;
@@ -279,31 +313,22 @@ void userActions() {
     }
 }
 
-int main(int argc, char *argv[]) {
+int main() {
     cout << "Base Start\n";
-    //Content
-    block.setPreviousHash("");
-//    try {
-    thread thread_obj(userActions);
-//    } catch  (exception e){
-//        cout << e.what();
+//    //Content
+//    block.setPreviousHash("");
+//    thread thread_obj(userActions);
+//    while (running) {
+//        if (chain.getBlockhashed()) {
+//            chain.pushBlock();
+//            chain.addBlock(block);
+//            string hash = block.getHash();
+//            block = *new Block;
+//            block.setPreviousHash(hash);
+//            block.setDifficulty(chain.getDifficulty());
+//        }
 //    }
-    while (running) {
-        #ifdef _WIN32
-            _sleep(10000);
-        #else
-            usleep(10000);
-        #endif
-
-
-        chain.addBlock(block);
-        string hash = block.getHash();
-        block = *new Block;
-        block.setPreviousHash(hash);
-        block.setDifficulty(chain.getDifficulty());
-//        cout << "The current difficulty is " << block.getDifficulty() << "\n";
-    }
-    thread_obj.join();
+//    thread_obj.join();
 
     cout << "Base End\n";
 
