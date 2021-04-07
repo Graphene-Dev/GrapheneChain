@@ -72,6 +72,9 @@ class Block {
     int difficulty;
     string currentHash = getHash();
     time_t current_time;
+    list <int> triedFillers;
+    list <string> fillerHashes;
+    int filler = 0;
 
 public:
     Block () {
@@ -114,7 +117,15 @@ public:
         for (unsigned int i = 0; i < this->transactions.size(); i++) {
             all += "\n" + transactionsHashes[i].getHash();
         }
-//        while (sha256(all) > (hex << difficulty))
+
+        stringstream ss;
+        ss << hex << difficulty;
+        string diff = ss.str();
+        while (sha256(all+to_string(filler)) < diff) {
+            triedFillers.push_back(filler);
+            fillerHashes.push_back(sha256(all+to_string(filler)));
+            filler++;
+        }
         current_time = time(NULL);
         return sha256(all);
     }
