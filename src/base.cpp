@@ -256,7 +256,7 @@ public:
       this-> projectNameHash = sha256(projectName);
         
     }
-    string setProjectNameHash(string projectNameHash) {
+    void setProjectNameHash(string projectNameHash) {
         this->projectNameHash = projectNameHash;
        
     }
