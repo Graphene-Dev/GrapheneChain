@@ -180,7 +180,8 @@ class BlockChain {
     Block currentHashedBlock;
     bool blockHashed = true;
     bool ready = true;
-
+    string projectName;
+    string projectNameHash;
 
     void setDifficulty() {
 
@@ -250,6 +251,20 @@ public:
         return true;
 
     }
+    string projectNameHash (string projectName, string projectNameHash) {
+      string projectName = "GrapheneChain"; //Change this to your cryptos name
+      string projectNameHash = sha256(projectName);
+        
+    }
+    string setProjectNameHash(string projectNameHash) {
+        this->projectNameHash = projectNameHash;
+       
+    }
+    string getProjectNameHash() {
+        return projectNameHash; 
+       
+    }
+
 
     vector<Block> getBlocks() {
         vector <Block> vecOfStr(chain.begin(), chain.end());
@@ -299,6 +314,7 @@ void userActions() {
                     cout << i << ". " << a.at(i).getTransaction() << "\n";
                 cout << "Hash: " << current.getHash() << "\n";
                 cout << "diff: " << current.getDifficulty() << "\n";
+                 cout << "project hash: " << chain.getProjectNameHash() << "\n";
                 cout << "\n";
             }
         }
@@ -310,6 +326,7 @@ void userActions() {
             cout << block.getHash();
             cout << "\n";
         }
+      
     }
 }
 
