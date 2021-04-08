@@ -251,9 +251,9 @@ public:
         return true;
 
     }
-    string projectNameHash (string projectName, string projectNameHash) {
-      string projectName = "GrapheneChain"; //Change this to your cryptos name
-      string projectNameHash = sha256(projectName);
+    void setProjectNameHash (string projectName, string projectNameHash) {
+      this-> projectName = "GrapheneChain"; //Change this to your cryptos name
+      this-> projectNameHash = sha256(projectName);
         
     }
     string setProjectNameHash(string projectNameHash) {
