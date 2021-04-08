@@ -232,7 +232,7 @@ public:
         if (end == -1) {
             end = chain.size();
         }
-        Block blocks[chain.size()];
+        Block* blocks = new Block[chain.size()];
         int l = 0;
         for (Block const &i: chain) {
             blocks[l++] = i;
