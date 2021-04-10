@@ -229,8 +229,9 @@ public:
         ready = false;
         currentHashedBlock = newBlock;
 //        difficulty = hashrate*hashrate;
-        thread threadobj(hashCurrentBlock());
-        threadobj.join();
+//        thread threadobj(hashCurrentBlock());
+//        threadobj.join();
+        hashCurrentBlock();
     }
     void removeBlock() {
         cout << "Not implemented yet \n";
