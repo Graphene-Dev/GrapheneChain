@@ -186,6 +186,13 @@ class BlockChain {
     void setDifficulty() {
 
     }
+    void hashCurrentBlock() {
+        if (!blockHashed && !ready) {
+            currentHashedBlock.getHash();
+            blockHashed = true;
+        }
+    }
+
 public:
     BlockChain() {
     }
@@ -222,7 +229,8 @@ public:
         ready = false;
         currentHashedBlock = newBlock;
 //        difficulty = hashrate*hashrate;
-
+        thread threadobj(hashCurrentBlock());
+        threadobj.join();
     }
     void removeBlock() {
         cout << "Not implemented yet \n";
@@ -302,6 +310,7 @@ void userActions() {
         }
         if (input == "displayChain") {
             vector<Block> a = chain.getBlocks();
+//            cout << "project hash: " << chain.getProjectNameHash() << "\n";
             for(unsigned int i=0; i < a.size(); i++) {
                 Block current = a.at(i);
                 cout << "Block " << i+1;
@@ -314,15 +323,17 @@ void userActions() {
                     cout << i << ". " << a.at(i).getTransaction() << "\n";
                 cout << "Hash: " << current.getHash() << "\n";
                 cout << "diff: " << current.getDifficulty() << "\n";
-                 cout << "project hash: " << chain.getProjectNameHash() << "\n";
+
                 cout << "\n";
             }
         }
         if (input == "displayCurrentBlock") {
-            cout << "Hash: " << block.getPreviousHash() << "\n";
+            cout << "Previous Hash: " << block.getPreviousHash() << "\n";
             vector<Transaction> a = block.getTransactions();
+            cout << "Transactions:" << "\n";
             for(unsigned int i=0; i < a.size(); i++)
                 cout << i+1 << ". " << a.at(i).getTransaction() << "\n";
+            cout << "Block Hash: ";
             cout << block.getHash();
             cout << "\n";
         }
