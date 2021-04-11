@@ -9,6 +9,7 @@
  * Thank you
  */
 
+//Include all needed things
 #ifdef _WIN32
 #include <Windows.h>
 #else
@@ -23,62 +24,89 @@
 #include "sha256.h"
 #include <ctime>
 #include <sstream>
+
+//set namespace
 using namespace std;
 
+
+//create defenition for transaction object
 class Transaction {
-    string sender;
-    string receiver;
-    int amount;
-    time_t current_time = time(NULL);
+
+    //initialize variables
+    string sender;      //who is sending the currency
+    string receiver;    //who is recieving it
+    int amount;         //the amount being processed
+    time_t current_time;//Time transaction last updated
 public:
+
+    //Constructor, initialize default values
     Transaction(string from = "", string to = "", int amount = -1) {
         sender = from;
         receiver = to;
         this->amount = amount;
+        current_time=time(NULL);
     }
 
+    //accessor of the amount in the transaction
     int getAmount () {
         return amount;
     }
+    //modifier for the amount in the transaction
     void setAmount (int amount) {
         this->amount = amount;
+        current_time=time(NULL);
     }
 
+
+    //accessor for the sender of the transaction
     string getSender() {
         return sender;
     }
+    //modifier for the sender of the transaction
     void setSender(string from) {
         sender = from;
+        current_time=time(NULL);
     }
 
+
+    //accessor for the reciever of the transaction
     string getReceiver() {
         return receiver;
     }
+    //modifier of the reciever of the transaction
     void setReceiver(string to) {
         receiver = to;
+        current_time=time(NULL);
     }
 
+
+    //get the transaction in a string
     string getTransaction() {
-        return "From: " + sender + ", To: " + receiver+ ", Amount: " + to_string(amount);
+        return "From: " + sender + ", To: " + receiver+ ", Amount: " + to_string(amount) + ", " + to_string(current_time);
     }
 
+
+    //return the hash of the transaction
     string getHash() {
-        return sha256(sender+receiver+to_string(amount));
+        return sha256(sender+receiver+to_string(amount)+to_string(current_time));
     }
 
 };
 
+//create the class definition for the object block (i.e. what stores the transactions)
 class Block {
-    string previousHash;
-    list <Transaction> transactions;
-    int difficulty;
-    string currentHash = getHash();
-    time_t timeFound;
-    list <int> triedFillers;
-    list <string> fillerHashes;
-    int filler = 0;
-    bool found = false;
-    string hash;
+
+    //initialize variables
+    string previousHash;            //Hash from the previous block
+    list <Transaction> transactions;//List of transactions contained in this block
+    int difficulty;                 //The difficulty of the block
+//    string currentHash;
+    time_t timeFound;               //Time the block was last hashed
+    list <int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
+    list <string> fillerHashes;     //list of filler hashed (currently disabled because of memory problems most likely)
+    int filler = 0;                 //current filler
+    bool found = false;             //If the block hash has been found
+    string hash;                    //the current hash
 
 public:
     Block () {
@@ -90,6 +118,10 @@ public:
 
     int getFiller() {
         return filler;
+    }
+
+    time_t getTimeFound() {
+        return timeFound;
     }
 
     vector <string> getFillerHashResults() {
@@ -133,10 +165,15 @@ public:
 
     string getHash() {
         if (!found) {
-            if (!triedFillers.empty()) {
-                triedFillers.clear();
-                fillerHashes.clear();
-            }
+//            if (!triedFillers.empty()) {
+            filler = 0;
+//            while (!triedFillers.empty()) {
+//                triedFillers.pop_front();
+//            }
+//            while (!fillerHashes.empty()) {
+//                fillerHashes.pop_front();
+//            }
+//            }
             Transaction *transactionsHashes = new Transaction[this->transactions.size()];
             int l = 0;
             for (Transaction const &i: this->transactions) {
@@ -151,20 +188,23 @@ public:
             stringstream ss;
             ss << hex << difficulty;
             string diff = ss.str();
-            while (sha256(all + to_string(filler)) < diff) {
-                triedFillers.push_back(filler);
-                fillerHashes.push_back(sha256(all + to_string(filler)));
+            string diff2 = "";
+            for (int i = 0; i < sha256("test").length()/diff.length(); i++) {
+                diff2+=diff;
+            }
+            cout << diff2 << "\n";
+            while (sha256(all + to_string(filler)) < diff2) {
+//                triedFillers.push_back(filler);
+//                fillerHashes.push_back(sha256(all + to_string(filler)));
                 filler++;
             }
 
             timeFound = time(NULL);
-            hash = sha256(all);
-
-            return sha256(all);
-
-        } else {
-            return hash;
+            hash = sha256(all + to_string(filler));
+            found = true;
         }
+        return hash;
+
     }
     string forceFindNewHash() {
         found = false;
@@ -175,7 +215,7 @@ public:
 class BlockChain {
     list <Block> chain;
 //    int length = 0;
-    int difficulty = 10000;
+    int difficulty = 100000000;
     int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
@@ -229,9 +269,6 @@ public:
         blockHashed = false;
         ready = false;
         currentHashedBlock = newBlock;
-//        difficulty = hashrate*hashrate;
-//        thread threadobj(hashCurrentBlock());
-//        threadobj.join();
         hashCurrentBlock();
     }
     void removeBlock() {
@@ -277,7 +314,7 @@ public:
 
 
     vector<Block> getBlocks() {
-        vector <Block> vecOfStr(chain.begin(), chain.end());
+        vector<Block> vecOfStr(chain.begin(), chain.end());
         return vecOfStr;
     }
 };
@@ -351,6 +388,7 @@ int main() {
     while (running) {
         if (chain.getBlockhashed()) {
             chain.pushBlock();
+
             chain.addBlock(block);
             string hash = block.getHash();
             block = *new Block;
