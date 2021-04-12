@@ -194,20 +194,22 @@ public:
                 all += "\n" + transactionsHashes[i].getHash();
             }
 
+
+            //In the future reverse it so as difficulty goes up, the harder it is ig
             stringstream ss;
             ss << hex << difficulty;
             string diff = ss.str();
-            string diff2 = "";
-            for (int i = 0; i < sha256("test").length()/diff.length(); i++) {
-                diff2+=diff;
-            }
-            cout << diff2 << "\n";
-            while (sha256(all + to_string(filler)) < diff2) {
+//            string diff2 = "";
+//            for (int i = 0; i < sha256("test").length()/diff.length(); i++) {
+//                diff2+=diff;
+//            }
+//            cout << diff2 << "\n";
+            while (sha256(all + to_string(filler)) > diff) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
                 filler++;
             }
-
+            cout << "newblock\n";
             timeFound = time(NULL);
             hash = sha256(all + to_string(filler));
             found = true;
@@ -222,10 +224,11 @@ public:
     }
 };
 
+//Block-chain class, contains all of the blocks
 class BlockChain {
     list <Block> chain;
 //    int length = 0;
-    int difficulty = 100000000;
+    unsigned long difficulty = 99999999999999999;
     int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
@@ -255,7 +258,7 @@ public:
         return targetTime;
     }
 
-    int getDifficulty() {
+    unsigned long getDifficulty() {
         return difficulty;
     }
 
@@ -370,7 +373,9 @@ void userActions() {
                 cout << "Transactions:\n";
                 for(unsigned int i=0; i < a.size(); i++)
                     cout << i << ". " << a.at(i).getTransaction() << "\n";
-                cout << "Hash: " << current.getHash() << "\n";
+                if (current.foundHash()) {
+                    cout << "Hash: " << current.getHash() << "\n";
+                }
                 cout << "diff: " << current.getDifficulty() << "\n";
 
                 cout << "\n";
@@ -382,8 +387,10 @@ void userActions() {
             cout << "Transactions:" << "\n";
             for(unsigned int i=0; i < a.size(); i++)
                 cout << i+1 << ". " << a.at(i).getTransaction() << "\n";
-            cout << "Block Hash: ";
-            cout << block.getHash();
+            if (block.foundHash()) {
+                cout << "Block Hash: ";
+                cout << block.getHash();
+            }
             cout << "\n";
         }
       
