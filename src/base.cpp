@@ -179,6 +179,7 @@ public:
         return vecOfStr;
     }
 
+    //Get the current Hash or create a hash for the block
     string getHash() {
         if (!found) {
             filler = 0;
@@ -214,6 +215,7 @@ public:
         return hash;
 
     }
+    //Force the program to find a new hash
     string forceFindNewHash() {
         found = false;
         return getHash();
