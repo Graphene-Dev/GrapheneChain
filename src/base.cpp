@@ -205,7 +205,7 @@ public:
 //                diff2+=diff;
 //            }
 //            cout << diff2 << "\n";
-            while (sha256(all + to_string(filler)) > diff+diff && difficulty != 0) {
+            while (sha256(all + to_string(filler)) > diff && difficulty != 0) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
                 filler++;
@@ -231,7 +231,7 @@ public:
 class BlockChain {
     list <Block> chain;
 //    int length = 0;
-    unsigned long difficulty = 99999999999999999;
+    unsigned long difficulty = 1;
     int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
