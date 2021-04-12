@@ -109,21 +109,28 @@ class Block {
     string hash;                    //the current hash
 
 public:
+
+    //Constructor
     Block () {
     }
 
+
+    //Check if a hash has already been found
     bool foundHash() {
         return found;
     }
 
+    //get the current filler
     int getFiller() {
         return filler;
     }
 
+    //Get the last time the block was sucessfully found
     time_t getTimeFound() {
         return timeFound;
     }
 
+    /* //Not needed right now
     vector <string> getFillerHashResults() {
         vector <string > vecOfStr(fillerHashes.begin(), fillerHashes.end());
         return vecOfStr;
@@ -133,15 +140,20 @@ public:
         vector <int> vecOfStr(triedFillers.begin(), triedFillers.end());
         return vecOfStr;
     }
+     */
 
+    //Get difficulty of block
     int getDifficulty() {
         return difficulty;
     };
+    //Set the difficulty of the block (and reset if the block has been found)
     void setDifficulty(int difficulty) {
         found = false;
         this->difficulty = difficulty;
     };
 
+    
+    //Set the previous hash of the block (and reset if the block has been found)
     void setPreviousHash(string previousHash) {
         found = false;
         this->previousHash = previousHash;
