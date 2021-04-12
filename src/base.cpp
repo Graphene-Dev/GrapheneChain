@@ -152,24 +152,28 @@ public:
         this->difficulty = difficulty;
     };
 
-    
+
     //Set the previous hash of the block (and reset if the block has been found)
     void setPreviousHash(string previousHash) {
         found = false;
         this->previousHash = previousHash;
     }
+    //Accessor of the previous hash that is defined in the block
     string getPreviousHash() {
         return previousHash;
     }
 
+    //Add a transaction (and reset if the block has been found)
     void addTransaction(Transaction transaction) {
         found = false;
         this->transactions.push_back(transaction);
     }
+    //Remove a transaction (incomplete)
     void removeTransaction(int position) {
         cout << "Not implemented yet \n";
     }
 
+    //Get the transactions in the list
     vector<Transaction> getTransactions() {
         vector <Transaction > vecOfStr(transactions.begin(), transactions.end());
         return vecOfStr;
@@ -177,15 +181,7 @@ public:
 
     string getHash() {
         if (!found) {
-//            if (!triedFillers.empty()) {
             filler = 0;
-//            while (!triedFillers.empty()) {
-//                triedFillers.pop_front();
-//            }
-//            while (!fillerHashes.empty()) {
-//                fillerHashes.pop_front();
-//            }
-//            }
             Transaction *transactionsHashes = new Transaction[this->transactions.size()];
             int l = 0;
             for (Transaction const &i: this->transactions) {
