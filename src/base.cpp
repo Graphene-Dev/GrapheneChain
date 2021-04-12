@@ -198,18 +198,21 @@ public:
             //In the future reverse it so as difficulty goes up, the harder it is ig
             stringstream ss;
             ss << hex << difficulty;
+//            cout << difficulty;
             string diff = ss.str();
 //            string diff2 = "";
 //            for (int i = 0; i < sha256("test").length()/diff.length(); i++) {
 //                diff2+=diff;
 //            }
 //            cout << diff2 << "\n";
-            while (sha256(all + to_string(filler)) > diff) {
+            while (sha256(all + to_string(filler)) > diff+diff && difficulty != 0) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
                 filler++;
+//                cout << "newhash\n";
+//                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
             }
-            cout << "newblock\n";
+
             timeFound = time(NULL);
             hash = sha256(all + to_string(filler));
             found = true;
@@ -371,10 +374,11 @@ void userActions() {
                 cout << "\n";
                 vector<Transaction> a = current.getTransactions();
                 cout << "Transactions:\n";
-                for(unsigned int i=0; i < a.size(); i++)
+                for(unsigned int i=0; i < a.size(); i++) {
                     cout << i << ". " << a.at(i).getTransaction() << "\n";
-                if (current.foundHash()) {
-                    cout << "Hash: " << current.getHash() << "\n";
+                    if (current.foundHash()) {
+                        cout << "Hash: " << current.getHash() << "\n";
+                    }
                 }
                 cout << "diff: " << current.getDifficulty() << "\n";
 
@@ -404,13 +408,20 @@ int main() {
     thread thread_obj(userActions);
     while (running) {
         if (chain.getBlockhashed()) {
+            vector <Block> blocksList = chain.getBlocks();
+//            cout << "1";
             chain.pushBlock();
-
+//            cout << "2";
+            if (blocksList.size() > 2) {
+                block.setPreviousHash(blocksList.at((blocksList.size() - 1)).getHash());
+            }
+//            cout << "3";
             chain.addBlock(block);
-            string hash = block.getHash();
+//            cout << "4";
             block = *new Block;
-            block.setPreviousHash(hash);
+//            cout << "5";
             block.setDifficulty(chain.getDifficulty());
+//            cout << "6";
         }
     }
     thread_obj.join();
