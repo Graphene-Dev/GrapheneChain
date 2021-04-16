@@ -132,8 +132,8 @@ class Block {
             return false;
 
         /* Convert to lower case, for case insentitive comprasion */
-        std::transform(first.begin(), first.end(), first.begin(), ::tolower);
-        std::transform(second.begin(), second.end(), second.begin(), ::tolower);
+        transform(first.begin(), first.end(), first.begin(), ::tolower);
+        transform(second.begin(), second.end(), second.begin(), ::tolower);
 
         /* Call the std::string operator>(...) which compare strings lexicographically */
         if (first > second)
@@ -227,7 +227,7 @@ public:
                 transactionsHashes[l++] = i;
             }
 
-            string all = previousHash;
+            string all = previousHash+ "|";
             for (unsigned int i = 0; i < this->transactions.size(); i++) {
                 all += "\n" + transactionsHashes[i].getHash();
             }
@@ -242,9 +242,11 @@ public:
 //            diff+=diff;
 //            diff+=diff;
 //            cout << diff2 << "\n";
-            while (difficulty != 0 && hex_greater(sha256(all + to_string(filler)), diff)) {
+            string temp = all;
+            while (difficulty != 0 && hex_greater(sha256(temp), diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
+temp = all + to_string(filler);
                 filler++;
 //                cout << "newhash\n";
 //                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
@@ -271,7 +273,7 @@ public:
 class BlockChain {
     list<Block> chain;
 //    int length = 0;
-    unsigned long difficulty = 9999999999;
+    unsigned long difficulty = 9999999999999999;
     int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
