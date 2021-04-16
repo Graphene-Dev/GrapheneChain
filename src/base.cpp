@@ -111,6 +111,12 @@ class Block {
 
     bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second)
     {
+        while (first.at(0) == '0') {
+            first = first.substr(1,first.length());
+        }
+        while (second.at(0) == '0') {
+            second = second.substr(1,second.length());
+        }
         /* Comprasions based on size */
         int firstSize = first.size();
         int secondSize = second.size();
@@ -223,11 +229,10 @@ public:
 //            cout << difficulty;
             string diff = ss.str();
 //            string diff2 = "";
-//            for (int i = 0; i < sha256("test").length()/diff.length(); i++) {
-//                diff2+=diff;
-//            }
+//            diff+=diff;
+//            diff+=diff;
 //            cout << diff2 << "\n";
-            while (hex_greater(sha256(all + to_string(filler)), diff) && difficulty != 0) {
+            while (difficulty != 0 && hex_greater(sha256(all + to_string(filler)), diff) ) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
                 filler++;
