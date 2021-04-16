@@ -108,6 +108,28 @@ class Block {
     bool found = false;             //If the block hash has been found
     string hash;                    //the current hash
 
+
+    bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second)
+    {
+        /* Comprasions based on size */
+        int firstSize = first.size();
+        int secondSize = second.size();
+        if(firstSize > secondSize)
+            return true;
+        else if(firstSize < secondSize)
+            return false;
+
+        /* Convert to lower case, for case insentitive comprasion */
+        std::transform(first.begin(), first.end(), first.begin(), ::tolower);
+        std::transform(second.begin(), second.end(), second.begin(), ::tolower);
+
+        /* Call the std::string operator>(...) which compare strings lexicographically */
+        if(first > second)
+            return true;
+
+        /* In other cases first hex string is not greater */
+        return false;
+    }
 public:
 
     //Constructor
@@ -205,13 +227,15 @@ public:
 //                diff2+=diff;
 //            }
 //            cout << diff2 << "\n";
-            while (sha256(all + to_string(filler)) > diff && difficulty != 0) {
+            while (hex_greater(sha256(all + to_string(filler)), diff) && difficulty != 0) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
                 filler++;
 //                cout << "newhash\n";
 //                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
+
             }
+
 
             timeFound = time(NULL);
             hash = sha256(all + to_string(filler));
@@ -231,7 +255,7 @@ public:
 class BlockChain {
     list <Block> chain;
 //    int length = 0;
-    unsigned long difficulty = 1;
+    unsigned long difficulty = 10000;
     int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
