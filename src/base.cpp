@@ -13,8 +13,11 @@
 #ifdef _WIN32
 #include <Windows.h>
 #else
+
 #include <unistd.h>
+
 #endif
+
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -44,17 +47,18 @@ public:
         sender = from;
         receiver = to;
         this->amount = amount;
-        current_time=time(NULL);
+        current_time = time(NULL);
     }
 
     //accessor of the amount in the transaction
-    int getAmount () {
+    int getAmount() {
         return amount;
     }
+
     //modifier for the amount in the transaction
-    void setAmount (int amount) {
+    void setAmount(int amount) {
         this->amount = amount;
-        current_time=time(NULL);
+        current_time = time(NULL);
     }
 
 
@@ -62,10 +66,11 @@ public:
     string getSender() {
         return sender;
     }
+
     //modifier for the sender of the transaction
     void setSender(string from) {
         sender = from;
-        current_time=time(NULL);
+        current_time = time(NULL);
     }
 
 
@@ -73,22 +78,24 @@ public:
     string getReceiver() {
         return receiver;
     }
+
     //modifier of the reciever of the transaction
     void setReceiver(string to) {
         receiver = to;
-        current_time=time(NULL);
+        current_time = time(NULL);
     }
 
 
     //get the transaction in a string
     string getTransaction() {
-        return "From: " + sender + ", To: " + receiver+ ", Amount: " + to_string(amount) + ", " + to_string(current_time);
+        return "From: " + sender + ", To: " + receiver + ", Amount: " + to_string(amount) + ", " +
+               to_string(current_time);
     }
 
 
     //return the hash of the transaction
     string getHash() {
-        return sha256(sender+receiver+to_string(amount)+to_string(current_time));
+        return sha256(sender + receiver + to_string(amount) + to_string(current_time));
     }
 
 };
@@ -98,31 +105,30 @@ class Block {
 
     //initialize variables
     string previousHash;            //Hash from the previous block
-    list <Transaction> transactions;//List of transactions contained in this block
+    list<Transaction> transactions;//List of transactions contained in this block
     long difficulty;                 //The difficulty of the block
 //    string currentHash;
     time_t timeFound;               //Time the block was last hashed
-    list <int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
-    list <string> fillerHashes;     //list of filler hashed (currently disabled because of memory problems most likely)
+    list<int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
+    list<string> fillerHashes;     //list of filler hashed (currently disabled because of memory problems most likely)
     long filler = 0;                 //current filler
     bool found = false;             //If the block hash has been found
     string hash;                    //the current hash
 
 
-    bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second)
-    {
+    bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second) {
         while (first.at(0) == '0') {
-            first = first.substr(1,first.length());
+            first = first.substr(1, first.length());
         }
         while (second.at(0) == '0') {
-            second = second.substr(1,second.length());
+            second = second.substr(1, second.length());
         }
         /* Comprasions based on size */
         int firstSize = first.size();
         int secondSize = second.size();
-        if(firstSize > secondSize)
+        if (firstSize > secondSize)
             return true;
-        else if(firstSize < secondSize)
+        else if (firstSize < secondSize)
             return false;
 
         /* Convert to lower case, for case insentitive comprasion */
@@ -130,16 +136,17 @@ class Block {
         std::transform(second.begin(), second.end(), second.begin(), ::tolower);
 
         /* Call the std::string operator>(...) which compare strings lexicographically */
-        if(first > second)
+        if (first > second)
             return true;
 
         /* In other cases first hex string is not greater */
         return false;
     }
+
 public:
 
     //Constructor
-    Block () {
+    Block() {
     }
 
 
@@ -174,6 +181,7 @@ public:
     long getDifficulty() {
         return difficulty;
     };
+
     //Set the difficulty of the block (and reset if the block has been found)
     void setDifficulty(long difficulty) {
         found = false;
@@ -186,6 +194,7 @@ public:
         found = false;
         this->previousHash = previousHash;
     }
+
     //Accessor of the previous hash that is defined in the block
     string getPreviousHash() {
         return previousHash;
@@ -196,6 +205,7 @@ public:
         found = false;
         this->transactions.push_back(transaction);
     }
+
     //Remove a transaction (incomplete)
     void removeTransaction(int position) {
         cout << "Not implemented yet \n";
@@ -203,7 +213,7 @@ public:
 
     //Get the transactions in the list
     vector<Transaction> getTransactions() {
-        vector <Transaction > vecOfStr(transactions.begin(), transactions.end());
+        vector<Transaction> vecOfStr(transactions.begin(), transactions.end());
         return vecOfStr;
     }
 
@@ -232,7 +242,7 @@ public:
 //            diff+=diff;
 //            diff+=diff;
 //            cout << diff2 << "\n";
-            while (difficulty != 0 && hex_greater(sha256(all + to_string(filler)), diff) ) {
+            while (difficulty != 0 && hex_greater(sha256(all + to_string(filler)), diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
                 filler++;
@@ -249,6 +259,7 @@ public:
         return hash;
 
     }
+
     //Force the program to find a new hash
     string forceFindNewHash() {
         found = false;
@@ -258,7 +269,7 @@ public:
 
 //Block-chain class, contains all of the blocks
 class BlockChain {
-    list <Block> chain;
+    list<Block> chain;
 //    int length = 0;
     unsigned long difficulty = 9999999999;
     int hashrate = 1000;
@@ -272,6 +283,7 @@ class BlockChain {
     void setDifficulty() {
 
     }
+
     void hashCurrentBlock() {
         if (!blockHashed && !ready) {
             currentHashedBlock.getHash();
@@ -286,6 +298,7 @@ public:
     void setTargetTime(int target) {
         targetTime = target;
     }
+
     int getTargetTime() {
         return targetTime;
     }
@@ -301,6 +314,7 @@ public:
     bool getBlockhashed() {
         return blockHashed;
     }
+
     void pushBlock() {
         if (blockHashed) {
             chain.push_back(currentHashedBlock);
@@ -316,6 +330,7 @@ public:
         currentHashedBlock = newBlock;
         hashCurrentBlock();
     }
+
     void removeBlock() {
         cout << "Not implemented yet \n";
     }
@@ -324,14 +339,14 @@ public:
         if (end == -1) {
             end = chain.size();
         }
-        Block* blocks = new Block[chain.size()];
+        Block *blocks = new Block[chain.size()];
         int l = 0;
         for (Block const &i: chain) {
             blocks[l++] = i;
         }
 
         string currentHash = blocks[start].getHash();
-        for (int i = start+1; i < end; i++) {
+        for (int i = start + 1; i < end; i++) {
             if (currentHash != blocks[i].getPreviousHash()) {
                 return false;
             }
@@ -343,18 +358,21 @@ public:
         return true;
 
     }
-    void setProjectNameHash (string projectName, string projectNameHash) {
-      this-> projectName = "GrapheneChain"; //Change this to your cryptos name
-      this-> projectNameHash = sha256(projectName);
-        
+
+    void setProjectNameHash(string projectName, string projectNameHash) {
+        this->projectName = "GrapheneChain"; //Change this to your cryptos name
+        this->projectNameHash = sha256(projectName);
+
     }
+
     void setProjectNameHash(string projectNameHash) {
         this->projectNameHash = projectNameHash;
-       
+
     }
+
     string getProjectNameHash() {
-        return projectNameHash; 
-       
+        return projectNameHash;
+
     }
 
 
@@ -363,7 +381,6 @@ public:
         return vecOfStr;
     }
 };
-
 
 
 BlockChain chain;
@@ -395,15 +412,15 @@ void userActions() {
         if (input == "displayChain") {
             vector<Block> a = chain.getBlocks();
 //            cout << "project hash: " << chain.getProjectNameHash() << "\n";
-            for(unsigned int i=0; i < a.size(); i++) {
+            for (unsigned int i = 0; i < a.size(); i++) {
                 Block current = a.at(i);
-                cout << "Block " << i+1;
+                cout << "Block " << i + 1;
                 cout << "\n";
                 cout << "Previous Hash: " << current.getPreviousHash();
                 cout << "\n";
                 vector<Transaction> a = current.getTransactions();
                 cout << "Transactions:\n";
-                for(unsigned int i=0; i < a.size(); i++) {
+                for (unsigned int i = 0; i < a.size(); i++) {
                     cout << i << ". " << a.at(i).getTransaction() << "\n";
                     if (current.foundHash()) {
                         cout << "Hash: " << current.getHash() << "\n";
@@ -418,8 +435,8 @@ void userActions() {
             cout << "Previous Hash: " << block.getPreviousHash() << "\n";
             vector<Transaction> a = block.getTransactions();
             cout << "Transactions:" << "\n";
-            for(unsigned int i=0; i < a.size(); i++)
-                cout << i+1 << ". " << a.at(i).getTransaction() << "\n";
+            for (unsigned int i = 0; i < a.size(); i++)
+                cout << i + 1 << ". " << a.at(i).getTransaction() << "\n";
             if (block.foundHash()) {
                 cout << "Block Hash: ";
                 cout << block.getHash() << "\n";
@@ -428,7 +445,7 @@ void userActions() {
 //            cout << "Found date: " << to_string(block.getTimeFound());
             cout << "\n";
         }
-      
+
     }
 }
 
@@ -439,7 +456,7 @@ int main() {
     thread thread_obj(userActions);
     while (running) {
         if (chain.getBlockhashed()) {
-            vector <Block> blocksList = chain.getBlocks();
+            vector<Block> blocksList = chain.getBlocks();
 //            cout << "1";
             chain.pushBlock();
 //            cout << "2";
