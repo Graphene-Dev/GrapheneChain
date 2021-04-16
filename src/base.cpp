@@ -104,7 +104,7 @@ class Block {
     time_t timeFound;               //Time the block was last hashed
     list <int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
     list <string> fillerHashes;     //list of filler hashed (currently disabled because of memory problems most likely)
-    int filler = 0;                 //current filler
+    long filler = 0;                 //current filler
     bool found = false;             //If the block hash has been found
     string hash;                    //the current hash
 
@@ -143,7 +143,7 @@ public:
     }
 
     //get the current filler
-    int getFiller() {
+    long getFiller() {
         return filler;
     }
 
@@ -233,7 +233,7 @@ public:
                 filler++;
 //                cout << "newhash\n";
 //                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
-
+//                cout << filler << "\n";
             }
 
 
