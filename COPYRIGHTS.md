@@ -1,4 +1,4 @@
-#This file contains copyrights for the things people created that we use
+## This file contains copyrights for the things people created that we use
 
 # SHA256
  * Updated to C++, zedwood.com 2012
