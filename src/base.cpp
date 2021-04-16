@@ -99,7 +99,7 @@ class Block {
     //initialize variables
     string previousHash;            //Hash from the previous block
     list <Transaction> transactions;//List of transactions contained in this block
-    int difficulty;                 //The difficulty of the block
+    long difficulty;                 //The difficulty of the block
 //    string currentHash;
     time_t timeFound;               //Time the block was last hashed
     list <int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
@@ -165,11 +165,11 @@ public:
      */
 
     //Get difficulty of block
-    int getDifficulty() {
+    long getDifficulty() {
         return difficulty;
     };
     //Set the difficulty of the block (and reset if the block has been found)
-    void setDifficulty(int difficulty) {
+    void setDifficulty(long difficulty) {
         found = false;
         this->difficulty = difficulty;
     };
@@ -255,7 +255,7 @@ public:
 class BlockChain {
     list <Block> chain;
 //    int length = 0;
-    unsigned long difficulty = 10000;
+    unsigned long difficulty = 9999999999;
     int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
@@ -405,7 +405,7 @@ void userActions() {
                     }
                 }
                 cout << "diff: " << current.getDifficulty() << "\n";
-
+//                cout << "Found date: " << to_string(current.getTimeFound());
                 cout << "\n";
             }
         }
@@ -417,8 +417,10 @@ void userActions() {
                 cout << i+1 << ". " << a.at(i).getTransaction() << "\n";
             if (block.foundHash()) {
                 cout << "Block Hash: ";
-                cout << block.getHash();
+                cout << block.getHash() << "\n";
             }
+            cout << "Difficulty: " << block.getDifficulty() << "\n";
+//            cout << "Found date: " << to_string(block.getTimeFound());
             cout << "\n";
         }
       
