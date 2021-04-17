@@ -27,6 +27,7 @@
 #include "sha256.h"
 #include <ctime>
 #include <sstream>
+#include <algorithm>
 
 //set namespace
 using namespace std;
