@@ -35,14 +35,13 @@ using namespace std;
 
 //create defenition for transaction object
 class Transaction {
-
     //initialize variables
     string sender;      //who is sending the currency
     string receiver;    //who is recieving it
     int amount;         //the amount being processed
     time_t current_time;//Time transaction last updated
-public:
 
+public:
     //Constructor, initialize default values
     Transaction(string from = "", string to = "", int amount = -1) {
         sender = from;
@@ -98,12 +97,10 @@ public:
     string getHash() {
         return sha256(sender + receiver + to_string(amount) + to_string(current_time));
     }
-
 };
 
 //create the class definition for the object block (i.e. what stores the transactions)
 class Block {
-
     //initialize variables
     string previousHash;            //Hash from the previous block
     list<Transaction> transactions;//List of transactions contained in this block
@@ -145,7 +142,6 @@ class Block {
     }
 
 public:
-
     //Constructor
     Block() {
     }
@@ -228,7 +224,7 @@ public:
                 transactionsHashes[l++] = i;
             }
 
-            string all = previousHash+ "|";
+            string all = previousHash + "|";
             for (unsigned int i = 0; i < this->transactions.size(); i++) {
                 all += "\n" + transactionsHashes[i].getHash();
             }
@@ -247,7 +243,7 @@ public:
             while (difficulty != 0 && hex_greater(sha256(temp), diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
-temp = all + to_string(filler);
+                temp = all + to_string(filler);
                 filler++;
 //                cout << "newhash\n";
 //                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
@@ -260,7 +256,6 @@ temp = all + to_string(filler);
             found = true;
         }
         return hash;
-
     }
 
     //Force the program to find a new hash
@@ -284,7 +279,7 @@ class BlockChain {
     string projectNameHash;
 
     void setDifficulty() {
-
+        /*later*/
     }
 
     void hashCurrentBlock() {
@@ -359,7 +354,6 @@ public:
             currentHash = blocks[i].getHash();
         }
         return true;
-
     }
 
     void setProjectNameHash(string projectName, string projectNameHash) {
