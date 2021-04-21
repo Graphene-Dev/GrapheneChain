@@ -359,17 +359,14 @@ public:
     void setProjectNameHash(string projectName, string projectNameHash) {
         this->projectName = "GrapheneChain"; //Change this to your cryptos name
         this->projectNameHash = sha256(projectName);
-
     }
 
     void setProjectNameHash(string projectNameHash) {
         this->projectNameHash = projectNameHash;
-
     }
 
     string getProjectNameHash() {
         return projectNameHash;
-
     }
 
 
@@ -442,7 +439,6 @@ void userActions() {
 //            cout << "Found date: " << to_string(block.getTimeFound());
             cout << "\n";
         }
-
     }
 }
 

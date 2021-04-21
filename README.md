@@ -1,3 +1,4 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/graphene-dev/graphenechain/badge/master)](https://www.codefactor.io/repository/github/graphene-dev/graphenechain/overview/master)
 # GrapheneChain
 GrapheneChain is a template cryptocurrency chain 
 developed for those who want to run a crypto 
