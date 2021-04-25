@@ -439,6 +439,14 @@ void userActions() {
 //            cout << "Found date: " << to_string(block.getTimeFound());
             cout << "\n";
         }
+        if (input == "hashBlock") {
+            cout << "hashing block" << "\n";
+            chain.addBlock(block);
+             if (block.foundHash()) {
+                cout << "Block Hash: ";
+                cout << block.getHash() << "\n";
+            }
+        }
     }
 }
 
