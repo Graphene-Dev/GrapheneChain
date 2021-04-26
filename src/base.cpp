@@ -223,12 +223,12 @@ public:
             for (Transaction const &i: this->transactions) {
                 transactionsHashes[l++] = i;
             }
-
+   
             string all = previousHash + "|";
             for (unsigned int i = 0; i < this->transactions.size(); i++) {
                 all += "\n" + transactionsHashes[i].getHash();
             }
-
+ 
 
             //In the future reverse it so as difficulty goes up, the harder it is ig
             stringstream ss;
@@ -249,13 +249,17 @@ public:
 //                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
 //                cout << filler << "\n";
             }
-
+       
 
             timeFound = time(NULL);
             hash = sha256(all + to_string(filler));
             found = true;
+   
         }
+   
+    
         return hash;
+         
     }
 
     //Force the program to find a new hash
