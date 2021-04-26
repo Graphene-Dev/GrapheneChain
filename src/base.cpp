@@ -104,7 +104,7 @@ class Block {
     //initialize variables
     string previousHash;            //Hash from the previous block
     list<Transaction> transactions;//List of transactions contained in this block
-    long difficulty;                 //The difficulty of the block
+    unsigned long difficulty;                 //The difficulty of the block
 //    string currentHash;
     time_t timeFound;               //Time the block was last hashed
     list<int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
@@ -175,12 +175,12 @@ public:
      */
 
     //Get difficulty of block
-    long getDifficulty() {
+    unsigned long getDifficulty() {
         return difficulty;
     };
 
     //Set the difficulty of the block (and reset if the block has been found)
-    void setDifficulty(long difficulty) {
+    void setDifficulty(unsigned long difficulty) {
         found = false;
         this->difficulty = difficulty;
     };
@@ -468,7 +468,7 @@ int main() {
 //            cout << "3";
             chain.addBlock(block);
 //            cout << "4";
-            block = *new Block;
+            block = new Block;
 //            cout << "5";
             block.setDifficulty(chain.getDifficulty());
 //            cout << "6";
