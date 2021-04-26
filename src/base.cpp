@@ -468,7 +468,7 @@ int main() {
 //            cout << "3";
             chain.addBlock(block);
 //            cout << "4";
-            block = new Block;
+            block = *new Block;
 //            cout << "5";
             block.setDifficulty(chain.getDifficulty());
 //            cout << "6";
