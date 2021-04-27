@@ -1,7 +1,13 @@
-//
-// Created by StealthHydrac
-//
 #include "Transaction.h"
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <list>
+#include <thread>
+#include <ctime>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 //Constructor, initialize default values

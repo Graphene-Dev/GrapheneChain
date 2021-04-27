@@ -1,6 +1,3 @@
-//
-// Created by StealthHydrac
-//
 #include "Transaction.h"
 #include <cstdlib>
 #include <iostream>

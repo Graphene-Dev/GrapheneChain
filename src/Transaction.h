@@ -1,7 +1,3 @@
-//
-// Created by StealthHydrac
-//
-
 #include <string>
 
 #ifndef GRAPHENECHAIN_TRANSACTION_H
