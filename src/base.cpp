@@ -28,76 +28,11 @@
 #include <ctime>
 #include <sstream>
 #include <algorithm>
+#include "Transaction.h"
 
 //set namespace
 using namespace std;
 
-
-//create defenition for transaction object
-class Transaction {
-    //initialize variables
-    string sender;      //who is sending the currency
-    string receiver;    //who is recieving it
-    int amount;         //the amount being processed
-    time_t current_time;//Time transaction last updated
-
-public:
-    //Constructor, initialize default values
-    Transaction(string from = "", string to = "", int amount = -1) {
-        sender = from;
-        receiver = to;
-        this->amount = amount;
-        current_time = time(NULL);
-    }
-
-    //accessor of the amount in the transaction
-    int getAmount() {
-        return amount;
-    }
-
-    //modifier for the amount in the transaction
-    void setAmount(int amount) {
-        this->amount = amount;
-        current_time = time(NULL);
-    }
-
-
-    //accessor for the sender of the transaction
-    string getSender() {
-        return sender;
-    }
-
-    //modifier for the sender of the transaction
-    void setSender(string from) {
-        sender = from;
-        current_time = time(NULL);
-    }
-
-
-    //accessor for the reciever of the transaction
-    string getReceiver() {
-        return receiver;
-    }
-
-    //modifier of the reciever of the transaction
-    void setReceiver(string to) {
-        receiver = to;
-        current_time = time(NULL);
-    }
-
-
-    //get the transaction in a string
-    string getTransaction() {
-        return "From: " + sender + ", To: " + receiver + ", Amount: " + to_string(amount) + ", " +
-               to_string(current_time);
-    }
-
-
-    //return the hash of the transaction
-    string getHash() {
-        return sha256(sender + receiver + to_string(amount) + to_string(current_time));
-    }
-};
 
 //create the class definition for the object block (i.e. what stores the transactions)
 class Block {
