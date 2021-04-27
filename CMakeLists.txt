@@ -14,4 +14,4 @@ add_executable(GrapheneChain
         src/sha256.cpp)
 add_executable(GrapheneChain
         src/Transaction.cpp
-        src/Transaction.h)
+        src/Transaction.h src/block.cpp src/block.h)
