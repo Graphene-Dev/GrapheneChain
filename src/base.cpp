@@ -455,25 +455,23 @@ void userActions() {
 
 int main() {
     cout << "Base Start\n";
-//    //Content
+
+
     block.setPreviousHash("");
     thread thread_obj(userActions);
     while (running) {
         if (chain.getBlockhashed()) {
-            vector<Block> blocksList = chain.getBlocks();
-//            cout << "1";
+
             chain.pushBlock();
-//            cout << "2";
+
+            vector<Block> blocksList = chain.getBlocks();
             if (blocksList.size() > 2) {
                 block.setPreviousHash(blocksList.at((blocksList.size() - 1)).getHash());
             }
-//            cout << "3";
+
             chain.addBlock(block);
-//            cout << "4";
             block = *new Block();
-//            cout << "5";
             block.setDifficulty(chain.getDifficulty());
-//            cout << "6";
         }
     }
     thread_obj.join();
