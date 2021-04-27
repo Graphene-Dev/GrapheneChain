@@ -136,7 +136,6 @@ class Block {
         /* Call the std::string operator>(...) which compare strings lexicographically */
         if (first > second)
             return true;
-
         /* In other cases first hex string is not greater */
         return false;
     }
@@ -253,13 +252,12 @@ public:
 
             timeFound = time(NULL);
             hash = sha256(all + to_string(filler));
+
             found = true;
-   
         }
    
     
         return hash;
-         
     }
 
     //Force the program to find a new hash
