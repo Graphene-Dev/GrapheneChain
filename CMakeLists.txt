@@ -10,6 +10,8 @@ endif (UNIX)
 add_executable(GrapheneChain
         src/base.cpp)
 add_executable(GrapheneChain
-        src/sha256.h )
-add_executable(GrapheneChain
+        src/sha256.h
         src/sha256.cpp)
+add_executable(GrapheneChain
+        src/Transaction.cpp
+        src/Transaction.h)
