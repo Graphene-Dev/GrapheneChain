@@ -461,7 +461,6 @@ int main() {
     thread thread_obj(userActions);
     while (running) {
         if (chain.getBlockhashed()) {
-
             chain.pushBlock();
 
             vector<Block> blocksList = chain.getBlocks();
