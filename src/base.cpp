@@ -25,6 +25,9 @@
 #include <list>
 #include <thread>
 #include "sha256.h"
+#include "block.h"
+#include "blockChain.h"
+#include "transaction.h"
 #include <ctime>
 #include <sstream>
 #include <algorithm>
