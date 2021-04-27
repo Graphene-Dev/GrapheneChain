@@ -1,5 +1,5 @@
 //
-// Created by Aiden Ma on 2021-04-27.
+// Created by StealthHydrac
 //
 
 #include <string>
