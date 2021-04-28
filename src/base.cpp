@@ -26,129 +26,15 @@
 #include <thread>
 #include "sha256.h"
 #include "block.h"
-//#include "blockChain.h"
+#include "blockChain.h"
 #include "transaction.h"
 #include <ctime>
 #include <sstream>
 #include <algorithm>
-//#include "Transaction.h"
+
 
 //set namespace
 using namespace std;
-
-
-
-
-//Block-chain class, contains all of the blocks
-class BlockChain {
-    list<Block> chain;
-//    int length = 0;
-    unsigned long difficulty = 9999999999999999;
-    int hashrate = 1000;
-    int targetTime = 10; //in seconds
-    Block currentHashedBlock;
-    bool blockHashed = true;
-    bool ready = true;
-    string projectName;
-    string projectNameHash;
-
-    void setDifficulty() {
-        /*later*/
-    }
-
-    void hashCurrentBlock() {
-        if (!blockHashed && !ready) {
-            currentHashedBlock.getHash();
-            blockHashed = true;
-        }
-    }
-
-public:
-    BlockChain() {
-    }
-
-    void setTargetTime(int target) {
-        targetTime = target;
-    }
-
-    int getTargetTime() {
-        return targetTime;
-    }
-
-    unsigned long getDifficulty() {
-        return difficulty;
-    }
-
-    Block getCurrentBlockHashed() {
-        return currentHashedBlock;
-    }
-
-    bool getBlockhashed() {
-        return blockHashed;
-    }
-
-    void pushBlock() {
-        if (blockHashed) {
-            chain.push_back(currentHashedBlock);
-            setDifficulty();
-            ready = true;
-        }
-    }
-
-
-    void addBlock(Block newBlock) {
-        blockHashed = false;
-        ready = false;
-        currentHashedBlock = newBlock;
-        hashCurrentBlock();
-    }
-
-    void removeBlock() {
-        cout << "Not implemented yet \n";
-    }
-
-    bool verifyChain(int start = 0, int end = -1) { //doesnt include end
-        if (end == -1) {
-            end = chain.size();
-        }
-        Block *blocks = new Block[chain.size()];
-        int l = 0;
-        for (Block const &i: chain) {
-            blocks[l++] = i;
-        }
-
-        string currentHash = blocks[start].getHash();
-        for (int i = start + 1; i < end; i++) {
-            if (currentHash != blocks[i].getPreviousHash()) {
-                return false;
-            }
-            if (!blocks[i].foundHash()) {
-                return false;
-            }
-            currentHash = blocks[i].getHash();
-        }
-        return true;
-    }
-
-    void setProjectNameHash(string projectName, string projectNameHash) {
-        this->projectName = "GrapheneChain"; //Change this to your cryptos name
-        this->projectNameHash = sha256(projectName);
-    }
-
-    void setProjectNameHash(string projectNameHash) {
-        this->projectNameHash = projectNameHash;
-    }
-
-    string getProjectNameHash() {
-        return projectNameHash;
-    }
-
-
-    vector<Block> getBlocks() {
-        vector<Block> vecOfStr(chain.begin(), chain.end());
-        return vecOfStr;
-    }
-};
 
 
 BlockChain chain;

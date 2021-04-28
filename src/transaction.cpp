@@ -1,4 +1,4 @@
-#include "Transaction.h"
+#include "transaction.h"
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -8,8 +8,10 @@
 #include <ctime>
 #include <sstream>
 #include <algorithm>
+#include "sha256.h"
 
 using namespace std;
+
 //Constructor, initialize default values
 Transaction::Transaction(string from, string to, int amount) {
     sender = from;

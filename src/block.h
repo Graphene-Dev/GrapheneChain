@@ -14,13 +14,11 @@ using namespace std;
 #include <list>
 #include <thread>
 #include "sha256.h"
-#include "block.h"
-#include "blockChain.h"
 #include "transaction.h"
 #include <ctime>
 #include <sstream>
 #include <algorithm>
-#include "Transaction.h"
+
 
 
 //create the class definition for the object block (i.e. what stores the transactions)
@@ -38,50 +36,22 @@ class Block {
     string hash;                    //the current hash
 
 
-    bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second) {
-        while (first.at(0) == '0') {
-            first = first.substr(1, first.length());
-        }
-        while (second.at(0) == '0') {
-            second = second.substr(1, second.length());
-        }
-        /* Comprasions based on size */
-        int firstSize = first.size();
-        int secondSize = second.size();
-        if (firstSize > secondSize)
-            return true;
-        else if (firstSize < secondSize)
-            return false;
-
-        /* Convert to lower case, for case insentitive comprasion */
-        transform(first.begin(), first.end(), first.begin(), ::tolower);
-        transform(second.begin(), second.end(), second.begin(), ::tolower);
-
-        /* Call the std::string operator>(...) which compare strings lexicographically */
-        if (first > second)
-            return true;
-        /* In other cases first hex string is not greater */
-        return false;
-    }
+    
+    
 
 public:
     //Constructor
     Block() {
     }
-
-
+    bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second);
     //Check if a hash has already been found
     bool foundHash();
 
     //get the current filler
-    long getFiller() {
-        return filler;
-    }
+    long getFiller();
 
     //Get the last time the block was sucessfully found
-    time_t getTimeFound() {
-        return timeFound;
-    }
+    time_t getTimeFound();
 
     /* //Not needed right now
     vector <string> getFillerHashResults() {
@@ -96,95 +66,30 @@ public:
      */
 
     //Get difficulty of block
-    unsigned long getDifficulty() {
-        return difficulty;
-    };
+    unsigned long getDifficulty();
 
     //Set the difficulty of the block (and reset if the block has been found)
-    void setDifficulty(unsigned long difficulty) {
-        found = false;
-        this->difficulty = difficulty;
-    };
+    void setDifficulty(unsigned long difficulty);
 
 
     //Set the previous hash of the block (and reset if the block has been found)
-    void setPreviousHash(string previousHash) {
-        found = false;
-        this->previousHash = previousHash;
-    }
+    void setPreviousHash(string previousHash);
 
     //Accessor of the previous hash that is defined in the block
-    string getPreviousHash() {
-        return previousHash;
-    }
+    string getPreviousHash();
 
     //Add a transaction (and reset if the block has been found)
-    void addTransaction(Transaction transaction) {
-        found = false;
-        this->transactions.push_back(transaction);
-    }
+    void addTransaction(Transaction transaction);
 
     //Remove a transaction (incomplete)
-    void removeTransaction(int position) {
-        cout << "Not implemented yet \n";
-    }
+    void removeTransaction(int position);
 
     //Get the transactions in the list
-    vector<Transaction> getTransactions() {
-        vector<Transaction> vecOfStr(transactions.begin(), transactions.end());
-        return vecOfStr;
-    }
+    vector<Transaction> getTransactions();
 
     //Get the current Hash or create a hash for the block
-    string getHash() {
-        if (!found) {
-            filler = 0;
-            Transaction *transactionsHashes = new Transaction[this->transactions.size()];
-            int l = 0;
-            for (Transaction const &i: this->transactions) {
-                transactionsHashes[l++] = i;
-            }
-
-            string all = previousHash + "|";
-            for (unsigned int i = 0; i < this->transactions.size(); i++) {
-                all += "\n" + transactionsHashes[i].getHash();
-            }
-
-
-            //In the future reverse it so as difficulty goes up, the harder it is ig
-            stringstream ss;
-            ss << hex << difficulty;
-//            cout << difficulty;
-            string diff = ss.str();
-//            string diff2 = "";
-//            diff+=diff;
-//            diff+=diff;
-//            cout << diff2 << "\n";
-            string temp = all;
-            while (difficulty != 0 && hex_greater(sha256(temp), diff)) {
-//                triedFillers.push_back(filler);
-//                fillerHashes.push_back(sha256(all + to_string(filler)));
-                temp = all + to_string(filler);
-                filler++;
-//                cout << "newhash\n";
-//                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
-//                cout << filler << "\n";
-            }
-
-
-            timeFound = time(NULL);
-            hash = sha256(all + to_string(filler));
-
-            found = true;
-        }
-
-
-        return hash;
-    }
+    string getHash();
 
     //Force the program to find a new hash
-    string forceFindNewHash() {
-        found = false;
-        return getHash();
-    }
+    string forceFindNewHash();
 };
