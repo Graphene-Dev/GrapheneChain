@@ -18,3 +18,6 @@ add_executable(GrapheneChain
 add_executable(GrapheneChain
         src/block.cpp
         src/block.h)
+add_executable(GrapheneChain
+        src/blockChain.cpp
+        src/blockChain.h)
