@@ -25,7 +25,7 @@ class BlockChain {
     string projectName;
     string projectNameHash;
 
-    void setDifficulty();
+    void setDifficulty(unsigned long diff);
 
     void hashCurrentBlock();
 

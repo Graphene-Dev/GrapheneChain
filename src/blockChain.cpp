@@ -8,8 +8,8 @@
 
 using namespace std;
 
-void BlockChain::setDifficulty() {
-    /*later*/
+void BlockChain::setDifficulty(unsigned long diff) {
+    difficulty = diff;
 }
 
 void BlockChain::hashCurrentBlock() {
