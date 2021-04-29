@@ -49,8 +49,8 @@ public:
 
     void removeBlock();
 
-    bool verifyChain(int start = 0, int end = -1); 
-    
+    bool verifyChain(int start = 0, int end = -1);
+
 
 //    void setProjectName(string projectName);
 //
@@ -58,4 +58,5 @@ public:
 
     vector<Block> getBlocks();
 };
+
 #endif //GRAPHENECHAIN_BLOCK_H

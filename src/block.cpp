@@ -11,29 +11,29 @@
 using namespace std;
 
 bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second) {
-     while (first.at(0) == '0') {
-            first = first.substr(1, first.length());
-        }
-        while (second.at(0) == '0') {
-            second = second.substr(1, second.length());
-        }
-        /* Comprasions based on size */
-        int firstSize = first.size();
-        int secondSize = second.size();
-        if (firstSize > secondSize)
-            return true;
-        else if (firstSize < secondSize)
-            return false;
-
-        /* Convert to lower case, for case insentitive comprasion */
-        transform(first.begin(), first.end(), first.begin(), ::tolower);
-        transform(second.begin(), second.end(), second.begin(), ::tolower);
-
-        /* Call the std::string operator>(...) which compare strings lexicographically */
-        if (first > second)
-            return true;
-        /* In other cases first hex string is not greater */
+    while (first.at(0) == '0') {
+        first = first.substr(1, first.length());
+    }
+    while (second.at(0) == '0') {
+        second = second.substr(1, second.length());
+    }
+    /* Comprasions based on size */
+    int firstSize = first.size();
+    int secondSize = second.size();
+    if (firstSize > secondSize)
+        return true;
+    else if (firstSize < secondSize)
         return false;
+
+    /* Convert to lower case, for case insentitive comprasion */
+    transform(first.begin(), first.end(), first.begin(), ::tolower);
+    transform(second.begin(), second.end(), second.begin(), ::tolower);
+
+    /* Call the std::string operator>(...) which compare strings lexicographically */
+    if (first > second)
+        return true;
+    /* In other cases first hex string is not greater */
+    return false;
 }
 
 //Check if a hash has already been found
@@ -42,8 +42,9 @@ bool Block::foundHash() {
         return found;
     }
 }
+
 string Block::getHash() {
-     {
+    {
         if (!found) {
             filler = 0;
             Transaction *transactionsHashes = new Transaction[this->transactions.size()];
@@ -89,6 +90,7 @@ string Block::getHash() {
         return hash;
     }
 }
+
 long Block::getFiller() {
     return filler;
 }
@@ -98,7 +100,7 @@ time_t Block::getTimeFound() {
 }
 
 unsigned long Block::getDifficulty() {
-       return difficulty;
+    return difficulty;
 }
 
 void Block::setDifficulty(unsigned long difficulty) {
@@ -112,7 +114,7 @@ void Block::setPreviousHash(string previousHash) {
 }
 
 string Block::getPreviousHash() {
- return previousHash;
+    return previousHash;
 }
 
 void Block::addTransaction(Transaction transaction) {

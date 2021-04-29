@@ -4,6 +4,7 @@
 #define GRAPHENECHAIN_TRANSACTION_H
 
 using namespace std;
+
 //create defenition for transaction object
 class Transaction {
     //initialize variables
@@ -44,4 +45,5 @@ public:
     //return the hash of the transaction
     string getHash();
 };
+
 #endif //GRAPHENECHAIN_TRANSACTION_H

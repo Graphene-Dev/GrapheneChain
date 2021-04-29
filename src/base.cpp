@@ -13,7 +13,9 @@
 #ifdef _WIN32
 #include <Windows.h>
 #else
+
 #include <unistd.h>
+
 #endif
 
 #include <iostream>
@@ -94,7 +96,7 @@ void userActions() {
         if (input == "forceBlock") {
             cout << "Force hashing block" << "\n";
             block.forceFindNewHash();
-             if (block.foundHash()) {
+            if (block.foundHash()) {
                 cout << "Block Hash: ";
                 cout << block.getHash() << "\n";
             }

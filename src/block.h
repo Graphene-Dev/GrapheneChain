@@ -30,14 +30,16 @@ class Block {
     string hash;                    //the current hash
 
 
-    
-    
+
+
 
 public:
     //Constructor
     Block() {
     }
+
     bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second);
+
     //Check if a hash has already been found
     bool foundHash();
 

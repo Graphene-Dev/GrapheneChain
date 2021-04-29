@@ -5,10 +5,11 @@
 #include "block.h"
 #include "transaction.h"
 #include <algorithm>
+
 using namespace std;
 
 void BlockChain::setDifficulty() {
-     /*later*/
+    /*later*/
 }
 
 void BlockChain::hashCurrentBlock() {
@@ -19,19 +20,19 @@ void BlockChain::hashCurrentBlock() {
 }
 
 void BlockChain::setTargetTime(int target) {
-        targetTime = target;
+    targetTime = target;
 }
 
 int BlockChain::getTargetTime() {
-     return targetTime;
+    return targetTime;
 }
 
 unsigned long BlockChain::getDifficulty() {
-     return difficulty;
+    return difficulty;
 }
 
 Block BlockChain::getCurrentBlockHashed() {
-     return currentHashedBlock;
+    return currentHashedBlock;
 }
 
 bool BlockChain::getBlockhashed() {
@@ -40,44 +41,44 @@ bool BlockChain::getBlockhashed() {
 
 void BlockChain::pushBlock() {
     if (blockHashed) {
-            chain.push_back(currentHashedBlock);
-            setDifficulty();
-            ready = true;
-   }
-} 
+        chain.push_back(currentHashedBlock);
+        setDifficulty();
+        ready = true;
+    }
+}
 
 void BlockChain::addBlock(Block newBlock) {
-        blockHashed = false;
-        ready = false;
-        currentHashedBlock = newBlock;
-        hashCurrentBlock();
+    blockHashed = false;
+    ready = false;
+    currentHashedBlock = newBlock;
+    hashCurrentBlock();
 }
 
 void BlockChain::removeBlock() {
-     cout << "Not implemented yet \n";
+    cout << "Not implemented yet \n";
 }
 
 bool BlockChain::verifyChain(int start, int end) {
-if (end == -1) {
-             end = chain.size();
-         }
-         Block *blocks = new Block[chain.size()];
-         int l = 0;
-         for (Block const &i: chain) {
-             blocks[l++] = i;
-         }
+    if (end == -1) {
+        end = chain.size();
+    }
+    Block *blocks = new Block[chain.size()];
+    int l = 0;
+    for (Block const &i: chain) {
+        blocks[l++] = i;
+    }
 
-        string currentHash = blocks[start].getHash();
-        for (int i = start + 1; i < end; i++) {
-             if (currentHash != blocks[i].getPreviousHash()) {
-                 return false;
-             }
-           if (!blocks[i].foundHash()) {
-                return false;
-             }
-            currentHash = blocks[i].getHash();
-         }
-       return true;
+    string currentHash = blocks[start].getHash();
+    for (int i = start + 1; i < end; i++) {
+        if (currentHash != blocks[i].getPreviousHash()) {
+            return false;
+        }
+        if (!blocks[i].foundHash()) {
+            return false;
+        }
+        currentHash = blocks[i].getHash();
+    }
+    return true;
 }
 
 //void BlockChain::setProjectNameHash(string projectName, string projectNameHash) {
