@@ -1,11 +1,5 @@
-
-
 #ifndef GRAPHENECHAIN_BLOCK_H
 #define GRAPHENECHAIN_BLOCK_H
-
-
-
-using namespace std;
 
 #include <cstdlib>
 #include <iostream>
@@ -14,13 +8,12 @@ using namespace std;
 #include <list>
 #include <thread>
 #include "sha256.h"
-
 #include "transaction.h"
 #include <ctime>
 #include <sstream>
 #include <algorithm>
 
-
+using namespace std;
 
 //create the class definition for the object block (i.e. what stores the transactions)
 class Block {
@@ -30,8 +23,8 @@ class Block {
     unsigned long difficulty;                 //The difficulty of the block
 //    string currentHash;
     time_t timeFound;               //Time the block was last hashed
-    list<int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
-    list<string> fillerHashes;     //list of filler hashed (currently disabled because of memory problems most likely)
+//    list<int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
+//    list<string> fillerHashes;     //list of filler hashed (currently disabled because of memory problems most likely)
     long filler = 0;                 //current filler
     bool found = false;             //If the block hash has been found
     string hash;                    //the current hash

@@ -3,9 +3,6 @@
 #ifndef GRAPHENECHAIN_TRANSACTION_H
 #define GRAPHENECHAIN_TRANSACTION_H
 
-
-
-
 using namespace std;
 //create defenition for transaction object
 class Transaction {

@@ -1,15 +1,9 @@
 #include "blockChain.h"
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <list>
-#include <thread>
-#include "sha256.h"
 #include "block.h"
 #include "transaction.h"
-#include <ctime>
-#include <sstream>
 #include <algorithm>
 using namespace std;
 
@@ -86,18 +80,18 @@ if (end == -1) {
        return true;
 }
 
-void BlockChain::setProjectNameHash(string projectName, string projectNameHash) {
-    this->projectName = "GrapheneChain"; //Change this to your cryptos name
-    this->projectNameHash = sha256(projectName);
-}
-
-void BlockChain::setProjectNameHash(string projectNameHash) {
-    this->projectNameHash = projectNameHash;
-}
-
-string BlockChain::getProjectNameHash() {
-    return projectNameHash;
-}
+//void BlockChain::setProjectNameHash(string projectName, string projectNameHash) {
+//    this->projectName = "GrapheneChain"; //Change this to your cryptos name
+//    this->projectNameHash = sha256(projectName);
+//}
+//
+//void BlockChain::setProjectNameHash(string projectNameHash) {
+//    this->projectNameHash = projectNameHash;
+//}
+//
+//string BlockChain::getProjectNameHash() {
+//    return projectNameHash;
+//}
 
 vector<Block> BlockChain::getBlocks() {
     vector<Block> vecOfStr(chain.begin(), chain.end());

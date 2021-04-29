@@ -13,29 +13,20 @@
 #ifdef _WIN32
 #include <Windows.h>
 #else
-
 #include <unistd.h>
-
 #endif
 
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <list>
 #include <thread>
-#include "sha256.h"
 #include "block.h"
 #include "blockChain.h"
 #include "transaction.h"
-#include <ctime>
-#include <sstream>
 #include <algorithm>
-
 
 //set namespace
 using namespace std;
-
 
 BlockChain chain;
 Block block;
@@ -72,10 +63,10 @@ void userActions() {
                 cout << "\n";
                 cout << "Previous Hash: " << current.getPreviousHash();
                 cout << "\n";
-                vector<Transaction> a = current.getTransactions();
+                vector<Transaction> aT = current.getTransactions();
                 cout << "Transactions:\n";
-                for (unsigned int i = 0; i < a.size(); i++) {
-                    cout << i << ". " << a.at(i).getTransaction() << "\n";
+                for (unsigned int j = 0; j < aT.size(); j++) {
+                    cout << i << ". " << aT.at(i).getTransaction() << "\n";
                     if (current.foundHash()) {
                         cout << "Hash: " << current.getHash() << "\n";
                     }
