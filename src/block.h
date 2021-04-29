@@ -3,7 +3,7 @@
 #ifndef GRAPHENECHAIN_BLOCK_H
 #define GRAPHENECHAIN_BLOCK_H
 
-#endif //GRAPHENECHAIN_BLOCK_H
+
 
 using namespace std;
 
@@ -14,6 +14,7 @@ using namespace std;
 #include <list>
 #include <thread>
 #include "sha256.h"
+
 #include "transaction.h"
 #include <ctime>
 #include <sstream>
@@ -93,3 +94,5 @@ public:
     //Force the program to find a new hash
     string forceFindNewHash();
 };
+
+#endif //GRAPHENECHAIN_BLOCK_H

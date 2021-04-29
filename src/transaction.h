@@ -3,7 +3,7 @@
 #ifndef GRAPHENECHAIN_TRANSACTION_H
 #define GRAPHENECHAIN_TRANSACTION_H
 
-#endif //GRAPHENECHAIN_TRANSACTION_H
+
 
 
 using namespace std;
@@ -47,3 +47,4 @@ public:
     //return the hash of the transaction
     string getHash();
 };
+#endif //GRAPHENECHAIN_TRANSACTION_H

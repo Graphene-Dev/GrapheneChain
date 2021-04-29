@@ -64,7 +64,7 @@ void BlockChain::removeBlock() {
      cout << "Not implemented yet \n";
 }
 
-bool BlockChain::verifyChain(int start = 0, int end = -1) {
+bool BlockChain::verifyChain(int start, int end) {
 if (end == -1) {
              end = chain.size();
          }

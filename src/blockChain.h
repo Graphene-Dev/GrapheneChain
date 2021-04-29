@@ -1,7 +1,7 @@
 #ifndef GRAPHENECHAIN_BLOCKCHAIN_H
 #define GRAPHENECHAIN_BLOCKCHAIN_H
 
-#endif //GRAPHENECHAIN_BLOCK_H
+
 
 #include <cstdlib>
 #include <iostream>
@@ -60,3 +60,4 @@ public:
 
     vector<Block> getBlocks();
 };
+#endif //GRAPHENECHAIN_BLOCK_H
