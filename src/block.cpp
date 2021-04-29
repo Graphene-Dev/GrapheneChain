@@ -58,24 +58,16 @@ string Block::getHash() {
         }
 
 
-        //In the future reverse it so as difficulty goes up, the harder it is ig
+        //In the future reverse it so as difficulty goes up, the harder it is
         stringstream ss;
         ss << hex << difficulty;
-//            cout << difficulty;
         string diff = ss.str();
-//            string diff2 = "";
-//            diff+=diff;
-//            diff+=diff;
-//            cout << diff2 << "\n";
         string temp = all;
         while (difficulty != 0 && hex_greater(sha256(temp), diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
             temp = all + to_string(filler);
             filler++;
-//                cout << "newhash\n";
-//                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
-//                cout << filler << "\n";
         }
 
 
@@ -102,14 +94,14 @@ unsigned long Block::getDifficulty() {
     return difficulty;
 }
 
-void Block::setDifficulty(unsigned long difficulty) {
+void Block::setDifficulty(unsigned long diff) {
     found = false;
-    this->difficulty = difficulty;
+    this->difficulty = diff;
 }
 
-void Block::setPreviousHash(string previousHash) {
+void Block::setPreviousHash(string prevHash) {
     found = false;
-    this->previousHash = previousHash;
+    this->previousHash = prevHash;
 }
 
 string Block::getPreviousHash() {
