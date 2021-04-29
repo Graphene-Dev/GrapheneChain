@@ -57,7 +57,6 @@ void BlockChain::addBlock(Block newBlock) {
         ready = false;
         currentHashedBlock = newBlock;
         hashCurrentBlock();
-    
 }
 
 void BlockChain::removeBlock() {
@@ -104,5 +103,3 @@ vector<Block> BlockChain::getBlocks() {
     vector<Block> vecOfStr(chain.begin(), chain.end());
     return vecOfStr;
 }
-
-

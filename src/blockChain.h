@@ -29,6 +29,7 @@ class BlockChain {
     void setDifficulty();
 
     void hashCurrentBlock();
+
 public:
     BlockChain() {
     }
