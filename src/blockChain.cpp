@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void BlockChain::setDifficulty(unsigned long diff) {
+void BlockChain::setDifficulty(unsigned long long diff) {
     difficulty = diff;
 }
 
@@ -28,7 +28,7 @@ int BlockChain::getTargetTime() {
     return targetTime;
 }
 
-unsigned long BlockChain::getDifficulty() {
+unsigned long long BlockChain::getDifficulty() {
     return difficulty;
 }
 

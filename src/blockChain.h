@@ -16,7 +16,7 @@
 class BlockChain {
     list<Block> chain;
 //    int length = 0;
-    unsigned long difficulty = 9999999999999999;
+    unsigned long long difficulty = 0xffffffffffffffff; //18446744073709551615
 //    int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
@@ -25,7 +25,7 @@ class BlockChain {
     string projectName;
     string projectNameHash;
 
-    void setDifficulty(unsigned long diff);
+    void setDifficulty(unsigned long long diff);
 
     void hashCurrentBlock();
 
@@ -37,7 +37,7 @@ public:
 
     int getTargetTime();
 
-    unsigned long getDifficulty();
+    unsigned long long getDifficulty();
 
     Block getCurrentBlockHashed();
 
