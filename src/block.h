@@ -28,7 +28,7 @@ class Block {
     long filler = 0;                 //current filler
     bool found = false;             //If the block hash has been found
     string hash;                    //the current hash
-
+    int adjustmentFactor = 1;       //difficulty adjustment factor
 
 
 

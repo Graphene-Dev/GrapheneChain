@@ -5,6 +5,7 @@
 #include "block.h"
 #include "transaction.h"
 #include <algorithm>
+#include <time.h>
 
 using namespace std;
 
@@ -41,8 +42,11 @@ bool BlockChain::getBlockhashed() {
 
 void BlockChain::pushBlock() {
     if (blockHashed) {
+        time_t latest = currentHashedBlock.getTimeFound();
+        time_t previous = chain.back().getTimeFound();
         chain.push_back(currentHashedBlock);
-        setDifficulty();
+        double timeDifference = difftime(latest,previous); //in seconds
+//        setDifficulty();
         ready = true;
     }
 }
