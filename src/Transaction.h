@@ -4,7 +4,7 @@
 #define GRAPHENECHAIN_TRANSACTION_H
 
 #endif //GRAPHENECHAIN_TRANSACTION_H
-#include "sha256.h"
+
 
 using namespace std;
 //create defenition for transaction object
