@@ -17,7 +17,7 @@ bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> f
     while (second.at(0) == '0') {
         second = second.substr(1, second.length());
     }
-    /* Comprasions based on size */
+    /* Comparisons based on size */
     int firstSize = first.size();
     int secondSize = second.size();
     if (firstSize > secondSize)
@@ -25,7 +25,7 @@ bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> f
     else if (firstSize < secondSize)
         return false;
 
-    /* Convert to lower case, for case insentitive comprasion */
+    /* Convert to lower case, for case insensitive comparison */
     transform(first.begin(), first.end(), first.begin(), ::tolower);
     transform(second.begin(), second.end(), second.begin(), ::tolower);
 
@@ -38,58 +38,57 @@ bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> f
 
 //Check if a hash has already been found
 bool Block::foundHash() {
-    {
-        return found;
-    }
+    return found;
 }
 
+
 string Block::getHash() {
-    {
-        if (!found) {
-            filler = 0;
-            Transaction *transactionsHashes = new Transaction[this->transactions.size()];
-            int l = 0;
-            for (Transaction const &i: this->transactions) {
-                transactionsHashes[l++] = i;
-            }
 
-            string all = previousHash + "|";
-            for (unsigned int i = 0; i < this->transactions.size(); i++) {
-                all += "\n" + transactionsHashes[i].getHash();
-            }
+    if (!found) {
+        filler = 0;
+        Transaction *transactionsHashes = new Transaction[this->transactions.size()];
+        int l = 0;
+        for (Transaction const &i: this->transactions) {
+            transactionsHashes[l++] = i;
+        }
+
+        string all = previousHash + "|";
+        for (unsigned int i = 0; i < this->transactions.size(); i++) {
+            all += "\n" + transactionsHashes[i].getHash();
+        }
 
 
-            //In the future reverse it so as difficulty goes up, the harder it is ig
-            stringstream ss;
-            ss << hex << difficulty;
+        //In the future reverse it so as difficulty goes up, the harder it is ig
+        stringstream ss;
+        ss << hex << difficulty;
 //            cout << difficulty;
-            string diff = ss.str();
+        string diff = ss.str();
 //            string diff2 = "";
 //            diff+=diff;
 //            diff+=diff;
 //            cout << diff2 << "\n";
-            string temp = all;
-            while (difficulty != 0 && hex_greater(sha256(temp), diff)) {
+        string temp = all;
+        while (difficulty != 0 && hex_greater(sha256(temp), diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
-                temp = all + to_string(filler);
-                filler++;
+            temp = all + to_string(filler);
+            filler++;
 //                cout << "newhash\n";
 //                cout << diff << "\n" << sha256(all + to_string(filler)) << "\n";
 //                cout << filler << "\n";
-            }
-
-
-            timeFound = time(NULL);
-            hash = sha256(all + to_string(filler));
-
-            found = true;
         }
 
 
-        return hash;
+        timeFound = time(NULL);
+        hash = sha256(all + to_string(filler));
+
+        found = true;
     }
+
+
+    return hash;
 }
+
 
 long Block::getFiller() {
     return filler;
