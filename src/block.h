@@ -20,7 +20,7 @@ class Block {
     //initialize variables
     string previousHash;            //Hash from the previous block
     list<Transaction> transactions;//List of transactions contained in this block
-    unsigned long difficulty;                 //The difficulty of the block
+    unsigned long long difficulty;                 //The difficulty of the block
 //    string currentHash;
     time_t timeFound;               //Time the block was last hashed
 //    list<int> triedFillers;        //list of tried fillers (currently disabled [i think] because of memory problems)
