@@ -115,6 +115,7 @@ void userActions() {
                 cout << current.getHash() << "\n";
             }
             cout << "Difficulty: " << current.getDifficulty() << "\n";
+            cout << "Current Filler tested: " << current.getFiller() << "\n";
 //            cout << "Found date: " << to_string(block.getTimeFound());
             cout << "\n";
         }
