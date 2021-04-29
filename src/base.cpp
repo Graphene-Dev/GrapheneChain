@@ -82,8 +82,9 @@ void userActions() {
             cout << "Previous Hash: " << block.getPreviousHash() << "\n";
             vector<Transaction> a = block.getTransactions();
             cout << "Transactions:" << "\n";
-            for (unsigned int i = 0; i < a.size(); i++)
+            for (unsigned int i = 0; i < a.size(); i++) {
                 cout << i + 1 << ". " << a.at(i).getTransaction() << "\n";
+            }
             if (block.foundHash()) {
                 cout << "Block Hash: ";
                 cout << block.getHash() << "\n";
@@ -100,6 +101,22 @@ void userActions() {
                 cout << "Block Hash: ";
                 cout << block.getHash() << "\n";
             }
+        }
+        if (input == "currentHashBlock") {
+            Block current = chain.getCurrentBlockHashed();
+            cout << "Previous Hash: " << current.getPreviousHash() << "\n";
+            vector<Transaction> a = current.getTransactions();
+            cout << "Transactions:" << "\n";
+            for (unsigned int i = 0; i < a.size(); i++) {
+                cout << i + 1 << ". " << a.at(i).getTransaction() << "\n";
+            }
+            if (current.foundHash()) {
+                cout << "Block Hash: ";
+                cout << current.getHash() << "\n";
+            }
+            cout << "Difficulty: " << current.getDifficulty() << "\n";
+//            cout << "Found date: " << to_string(block.getTimeFound());
+            cout << "\n";
         }
     }
 }
