@@ -18,16 +18,11 @@
 
 #endif
 
-#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <list>
 #include <thread>
 #include "sha256.h"
-#include <ctime>
-#include <sstream>
-#include <algorithm>
 #include "blockChain.h"
 #include "transaction.h"
 #include "block.h"
@@ -38,6 +33,7 @@ using namespace std;
 
 BlockChain chain;
 Block block;
+
 bool running = true;
 
 void userActions() {
