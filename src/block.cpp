@@ -64,7 +64,10 @@ string Block::getHash() {
         ss << hex << difficulty;
         string diff = ss.str();
         string temp = all;
-        while (difficulty != 0 && hex_greater(sha256(temp), diff)) {
+        stringstream ss2;
+        ss2 << hex << temp;
+        string temphex = ss2.str();
+        while (difficulty != 0 && hex_greater(temphex, diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
             temp = all + to_string(filler);
