@@ -81,6 +81,7 @@ string Block::getHash() {
         ss << hex << difficulty;
         string diff = ss.str();
         string temp = all;
+        temp = sha256(temp);
         stringstream ss2;
         ss2 << hex << temp;
         string temphex = ss2.str();
@@ -89,8 +90,11 @@ string Block::getHash() {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
             temp = all + to_string(filler);
-            ss2 << hex << temp;
-            temphex = ss2.str();
+            stringstream ss3;
+            temp = sha256(temp);
+            ss3 << hex << temp;
+            temphex = ss3.str();
+
             filler++;
         }
 //        cout << "out\n";
