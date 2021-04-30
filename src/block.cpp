@@ -45,7 +45,6 @@ bool Block::foundHash() {
 string Block::getHash() {
 
     if (!found) {
-        cout << "starting trying to find a hash"; // for testing
         filler = 0;
         Transaction *transactionsHashes = new Transaction[this->transactions.size()];
         int l = 0;
@@ -79,9 +78,6 @@ string Block::getHash() {
         hash = sha256(all + to_string(filler));
 
         found = true;
-        if(found = true) { // for testing 
-            cout << "A hash is found!"; 
-        }
     }
 
 
