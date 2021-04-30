@@ -18,12 +18,12 @@ bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> f
         second = second.substr(1, second.length());
     }
     /* Comparisons based on size */
-    int firstSize = first.size();
-    int secondSize = second.size();
-    if (firstSize > secondSize)
-        return true;
-    else if (firstSize < secondSize)
-        return false;
+//    int firstSize = first.size();
+//    int secondSize = second.size();
+//    if (firstSize > secondSize)
+//        return true;                                      //waa i think it was this
+//    else if (firstSize < secondSize)
+//        return false;
 
     /* Convert to lower case, for case insensitive comparison */
     transform(first.begin(), first.end(), first.begin(), ::tolower);
@@ -66,8 +66,8 @@ string Block::getHash() {
         stringstream ss2;
         ss2 << hex << temp;
         string temphex = ss2.str();
-        cout << "prev\n";
-        while (difficulty != 0 && hex_greater(temphex, diff)) {
+//        cout << "prev\n";
+        while (difficulty != 0x0 && hex_greater(temphex, diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
             temp = all + to_string(filler);
@@ -75,7 +75,7 @@ string Block::getHash() {
             temphex = ss2.str();
             filler++;
         }
-        cout << "out\n";
+//        cout << "out\n";
 
         timeFound = time(NULL);
         hash = sha256(all + to_string(filler));

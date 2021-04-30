@@ -55,7 +55,7 @@ void BlockChain::addBlock(Block newBlock) {
     blockHashed = false;
     ready = false;
     currentHashedBlock = newBlock;
-    cout << "set success\n";
+//    cout << "set success\n";
     hashCurrentBlock();
 }
 

@@ -16,7 +16,7 @@
 class BlockChain {
     list<Block> chain;
 //    int length = 0;
-    unsigned long long difficulty = 0xffffffffffffffff; //18446744073709551615
+    unsigned long long difficulty = 0xefffffffffffffff; //18446744073709551615
 //    int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
