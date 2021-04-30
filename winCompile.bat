@@ -6,3 +6,4 @@ cd build
 cmake -G "Visual Studio 16 2019" -A x64 ..
 MSBuild GrapheneChain.sln
 echo "Compiling is done! Now the files should be in Debug or Release"
+sleep 4
