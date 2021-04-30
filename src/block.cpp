@@ -11,12 +11,12 @@
 using namespace std;
 
 bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second) {
-    while (first.at(0) == '0') {
-        first = first.substr(1, first.length());
-    }
-    while (second.at(0) == '0') {
-        second = second.substr(1, second.length());
-    }
+//    while (first.at(0) == '0') {
+//        first = first.substr(1, first.length());
+//    }
+//    while (second.at(0) == '0') {
+//        second = second.substr(1, second.length());
+//    }
     /* Comparisons based on size */
 //    int firstSize = first.size();
 //    int secondSize = second.size();
@@ -24,7 +24,25 @@ bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> f
 //        return true;                                      //waa i think it was this
 //    else if (firstSize < secondSize)
 //        return false;
-
+    int largerLength = -1;
+    int shorterLength = -1;
+    int larger = 0;
+    if (first.length() > second.length()) {
+        largerLength = first.length();
+        shorterLength = second.length();
+        larger = 1;
+    } else {
+        largerLength = second.length();
+        shorterLength = first.length();
+        larger = 2;
+    }
+    for (int i = 0; i < largerLength-shorterLength) {
+        if (larger == 1) {
+            second += "0";
+        } else {
+            first += "0";
+        }
+    }
     /* Convert to lower case, for case insensitive comparison */
     transform(first.begin(), first.end(), first.begin(), ::tolower);
     transform(second.begin(), second.end(), second.begin(), ::tolower);
