@@ -62,6 +62,7 @@ void userActions() {
             block.addTransaction(newTransaction);
         }
         if (input == "displayChain") {
+            cout << "Chain\n";
             vector<Block> a = chain.getBlocks();
 //            cout << "project hash: " << chain.getProjectNameHash() << "\n";
             for (unsigned int i = 0; i < a.size(); i++) {
@@ -113,14 +114,16 @@ int main() {
 //    //Content
     block.setPreviousHash("");
     thread thread_obj(userActions);
+    chain.addBlock(block);
     while (running) {
         if (chain.getBlockhashed()) {
             vector<Block> blocksList = chain.getBlocks();
 //            cout << "1";
             chain.pushBlock();
 //            cout << "2";
-            if (blocksList.size() > 2) {
-                block.setPreviousHash(blocksList.at((blocksList.size() - 1)).getHash());
+            string prevHash = "";
+            if (blocksList.size() > 1) {
+                prevHash = (blocksList.at((blocksList.size() - 1)).getHash());
             }
 //            cout << "3";
             chain.addBlock(block);
@@ -128,6 +131,7 @@ int main() {
             block = *new Block;
 //            cout << "5";
             block.setDifficulty(chain.getDifficulty());
+            block.setPreviousHash(prevHash);
 //            cout << "6";
         }
     }
