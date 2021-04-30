@@ -70,6 +70,8 @@ string Block::getHash() {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
             temp = all + to_string(filler);
+            ss2 << hex << temp;
+            temphex = ss2.str();
             filler++;
         }
 

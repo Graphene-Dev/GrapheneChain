@@ -15,7 +15,7 @@ void BlockChain::setDifficulty(unsigned long long diff) {
 
 void BlockChain::hashCurrentBlock() {
     if (!blockHashed && !ready) {
-        currentHashedBlock.getHash();
+        currentHashedBlock.getHash();                       //this line might be the problem
         blockHashed = true;
     }
 }
@@ -41,7 +41,7 @@ bool BlockChain::getBlockhashed() {
 }
 
 void BlockChain::pushBlock() {
-    if (blockHashed) {
+    if (blockHashed && !ready) {
         time_t latest = currentHashedBlock.getTimeFound();
         time_t previous = chain.back().getTimeFound();
         chain.push_back(currentHashedBlock);
@@ -55,6 +55,7 @@ void BlockChain::addBlock(Block newBlock) {
     blockHashed = false;
     ready = false;
     currentHashedBlock = newBlock;
+    cout << "set success\n";
     hashCurrentBlock();
 }
 

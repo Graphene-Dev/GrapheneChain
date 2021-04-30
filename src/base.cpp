@@ -46,7 +46,7 @@ void userActions() {
         cin >> input;
         if (input == "exit") {
             running = false;
-            break;
+            return;
         }
         if (input == "newTransaction") {
             string from;
@@ -117,14 +117,15 @@ int main() {
     chain.addBlock(block);
     while (running) {
         if (chain.getBlockhashed()) {
-            vector<Block> blocksList = chain.getBlocks();
+
             chain.pushBlock();
+            vector<Block> blocksList = chain.getBlocks();
             string prevHash = "";
-            if (blocksList.size() > 1) {
+            if (blocksList.size() >= 1) {
                 prevHash = chain.getBlocks().at(chain.getBlocks().size()-1).getHash();
                 block.setPreviousHash(prevHash);
             }
-            chain.addBlock(block);
+            chain.addBlock(block); //fails on second execution
             block = *new Block;
             block.setDifficulty(chain.getDifficulty());
         }
