@@ -18,17 +18,23 @@
 
 #endif
 
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 #include <thread>
-#include "block.h"
+#include "sha256.h"
+#include <ctime>
+#include <sstream>
+#include <algorithm>
 #include "blockChain.h"
 #include "transaction.h"
-#include <algorithm>
+#include "block.h"
 
 //set namespace
 using namespace std;
+
 
 BlockChain chain;
 Block block;
@@ -65,10 +71,10 @@ void userActions() {
                 cout << "\n";
                 cout << "Previous Hash: " << current.getPreviousHash();
                 cout << "\n";
-                vector<Transaction> aT = current.getTransactions();
+                vector<Transaction> a = current.getTransactions();
                 cout << "Transactions:\n";
-                for (unsigned int j = 0; j < aT.size(); j++) {
-                    cout << i << ". " << aT.at(i).getTransaction() << "\n";
+                for (unsigned int i = 0; i < a.size(); i++) {
+                    cout << i << ". " << a.at(i).getTransaction() << "\n";
                     if (current.foundHash()) {
                         cout << "Hash: " << current.getHash() << "\n";
                     }
@@ -82,9 +88,8 @@ void userActions() {
             cout << "Previous Hash: " << block.getPreviousHash() << "\n";
             vector<Transaction> a = block.getTransactions();
             cout << "Transactions:" << "\n";
-            for (unsigned int i = 0; i < a.size(); i++) {
+            for (unsigned int i = 0; i < a.size(); i++)
                 cout << i + 1 << ". " << a.at(i).getTransaction() << "\n";
-            }
             if (block.foundHash()) {
                 cout << "Block Hash: ";
                 cout << block.getHash() << "\n";
@@ -93,54 +98,38 @@ void userActions() {
 //            cout << "Found date: " << to_string(block.getTimeFound());
             cout << "\n";
         }
-        //For developing, will be removed later
-        if (input == "forceBlock") {
-            cout << "Force hashing block" << "\n";
-            block.forceFindNewHash();
-            if (block.foundHash()) {
+        if (input == "hashBlock") {
+            cout << "hashing block" << "\n";
+            chain.addBlock(block);
+             if (block.foundHash()) {
                 cout << "Block Hash: ";
                 cout << block.getHash() << "\n";
             }
-        }
-        if (input == "currentHashBlock") {
-            Block current = chain.getCurrentBlockHashed();
-            cout << "Previous Hash: " << current.getPreviousHash() << "\n";
-            vector<Transaction> a = current.getTransactions();
-            cout << "Transactions:" << "\n";
-            for (unsigned int i = 0; i < a.size(); i++) {
-                cout << i + 1 << ". " << a.at(i).getTransaction() << "\n";
-            }
-            if (current.foundHash()) {
-                cout << "Block Hash: ";
-                cout << current.getHash() << "\n";
-            }
-            cout << "Difficulty: " << current.getDifficulty() << "\n";
-            cout << "Current Filler tested: " << current.getFiller() << "\n";
-//            cout << "Found date: " << to_string(block.getTimeFound());
-            cout << "\n";
         }
     }
 }
 
 int main() {
     cout << "Base Start\n";
-
-
+//    //Content
     block.setPreviousHash("");
     thread thread_obj(userActions);
-    chain.addBlock(block);
     while (running) {
         if (chain.getBlockhashed()) {
-            chain.pushBlock();
-
             vector<Block> blocksList = chain.getBlocks();
+//            cout << "1";
+            chain.pushBlock();
+//            cout << "2";
             if (blocksList.size() > 2) {
                 block.setPreviousHash(blocksList.at((blocksList.size() - 1)).getHash());
             }
-
+//            cout << "3";
             chain.addBlock(block);
-            block = *new Block();
+//            cout << "4";
+            block = *new Block;
+//            cout << "5";
             block.setDifficulty(chain.getDifficulty());
+//            cout << "6";
         }
     }
     thread_obj.join();
