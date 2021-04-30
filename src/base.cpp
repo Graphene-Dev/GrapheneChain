@@ -128,6 +128,7 @@ int main() {
 
     block.setPreviousHash("");
     thread thread_obj(userActions);
+    chain.addBlock(block);
     while (running) {
         if (chain.getBlockhashed()) {
             chain.pushBlock();

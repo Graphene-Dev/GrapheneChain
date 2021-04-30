@@ -20,7 +20,7 @@ class BlockChain {
 //    int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
-    bool blockHashed = true;
+    bool blockHashed = false;
     bool ready = true;
     string projectName;
     string projectNameHash;
