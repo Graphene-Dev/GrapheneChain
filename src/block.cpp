@@ -52,9 +52,9 @@ string Block::getHash() {
             transactionsHashes[l++] = i;
         }
 
-        string all = previousHash + "|";
+        string all = previousHash;
         for (unsigned int i = 0; i < this->transactions.size(); i++) {
-            all += "\n" + transactionsHashes[i].getHash();
+            all += ":" + transactionsHashes[i].getHash();
         }
 
 
@@ -66,6 +66,7 @@ string Block::getHash() {
         stringstream ss2;
         ss2 << hex << temp;
         string temphex = ss2.str();
+        cout << "prev\n";
         while (difficulty != 0 && hex_greater(temphex, diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
@@ -74,7 +75,7 @@ string Block::getHash() {
             temphex = ss2.str();
             filler++;
         }
-
+        cout << "out\n";
 
         timeFound = time(NULL);
         hash = sha256(all + to_string(filler));
