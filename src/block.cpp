@@ -36,7 +36,7 @@ bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> f
         shorterLength = first.length();
         larger = 2;
     }
-    for (int i = 0; i < largerLength-shorterLength) {
+    for (int i = 0; i < largerLength-shorterLength; i++) {
         if (larger == 1) {
             second += "0";
         } else {
