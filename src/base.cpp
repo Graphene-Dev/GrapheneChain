@@ -118,21 +118,15 @@ int main() {
     while (running) {
         if (chain.getBlockhashed()) {
             vector<Block> blocksList = chain.getBlocks();
-//            cout << "1";
             chain.pushBlock();
-//            cout << "2";
             string prevHash = "";
             if (blocksList.size() > 1) {
-                prevHash = (blocksList.at((blocksList.size() - 1)).getHash());
+                prevHash = chain.getBlocks().at(chain.getBlocks().size()-1).getHash();
+                block.setPreviousHash(prevHash);
             }
-//            cout << "3";
             chain.addBlock(block);
-//            cout << "4";
             block = *new Block;
-//            cout << "5";
             block.setDifficulty(chain.getDifficulty());
-            block.setPreviousHash(prevHash);
-//            cout << "6";
         }
     }
     thread_obj.join();
