@@ -29,7 +29,7 @@ class Block {
     bool found = false;             //If the block hash has been found
     string hash;                    //the current hash
     int adjustmentFactor = 1;       //difficulty adjustment factor
-
+    int diffPadding;
 
 
 
@@ -88,6 +88,11 @@ public:
 
     //Force the program to find a new hash
     string forceFindNewHash();
+
+
+    int getDiffPadding();
+
+    void setDiffPadding(int padding);
 };
 
 #endif //GRAPHENECHAIN_BLOCK_H

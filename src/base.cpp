@@ -128,6 +128,7 @@ int main() {
             chain.addBlock(block); //fails on second execution
             block = *new Block;
             block.setDifficulty(chain.getDifficulty());
+            block.setDiffPadding(chain.getDiffPadding());
         }
     }
     thread_obj.join();

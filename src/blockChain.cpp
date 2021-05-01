@@ -46,7 +46,28 @@ void BlockChain::pushBlock() {
         time_t previous = chain.back().getTimeFound();
         chain.push_back(currentHashedBlock);
         double timeDifference = difftime(latest,previous); //in seconds
+
 //        setDifficulty();
+//if (timeDifference < 0.1) timeDifference = 0.1;
+//        cout << timeDifference << "\n";
+//        if (targetTime > timeDifference)
+//            setDifficulty(getDifficulty()-(adjustmentFactor*((targetTime/timeDifference))));
+//        if (targetTime < timeDifference)
+//            setDifficulty(getDifficulty()+(adjustmentFactor*((timeDifference/targetTime))));
+//        while (getDifficulty() > 10) {
+//            numZerosAtStart--;
+//            if (numZerosAtStart < 0) {
+//                numZerosAtStart = 0;
+//            } else {
+//                setDifficulty(getDifficulty()/10);
+//            }
+//        }
+//        while (getDifficulty() < 1) {
+//            numZerosAtStart++;
+//            setDifficulty(getDifficulty()+10);
+//
+//        }
+//        cout << getDifficulty();
         ready = true;
     }
 }

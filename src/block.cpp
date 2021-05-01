@@ -86,6 +86,11 @@ string Block::getHash() {
         ss2 << hex << temp;
         string temphex = ss2.str();
 //        cout << "prev\n";
+        for (int j = 0; j < diffPadding; j++) {
+            diff = "0" + diff;
+        }
+
+
         while (difficulty != 0x0 && hex_greater(temphex, diff)) {
 //                triedFillers.push_back(filler);
 //                fillerHashes.push_back(sha256(all + to_string(filler)));
@@ -155,3 +160,10 @@ string Block::forceFindNewHash() {
     return getHash();
 }
 
+int Block::getDiffPadding() {
+    return diffPadding;
+}
+
+void Block::setDiffPadding(int padding) {
+    diffPadding = padding;
+}

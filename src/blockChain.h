@@ -16,7 +16,8 @@
 class BlockChain {
     list<Block> chain;
 //    int length = 0;
-    unsigned long long difficulty = 0xefffffffffffffff; //18446744073709551615
+    int numZerosAtStart = 3;
+    unsigned long long difficulty = 0x1;
 //    int hashrate = 1000;
     int targetTime = 10; //in seconds
     Block currentHashedBlock;
@@ -24,6 +25,7 @@ class BlockChain {
     bool ready = true;
     string projectName;
     string projectNameHash;
+    int adjustmentFactor = 1;
 
     void setDifficulty(unsigned long long diff);
 
@@ -51,6 +53,9 @@ public:
 
     bool verifyChain(int start = 0, int end = -1);
 
+    int getDiffPadding() {
+        return numZerosAtStart;
+    }
 
 //    void setProjectName(string projectName);
 //
