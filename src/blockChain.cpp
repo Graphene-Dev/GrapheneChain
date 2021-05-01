@@ -43,9 +43,15 @@ bool BlockChain::getBlockhashed() {
 void BlockChain::pushBlock() {
     if (blockHashed && !ready) {
         time_t latest = currentHashedBlock.getTimeFound();
-        time_t previous = chain.back().getTimeFound();
-        chain.push_back(currentHashedBlock);
-        double timeDifference = difftime(latest,previous); //in seconds
+        double timeDifference;
+        if (chain.size() != 0) {
+            time_t previous = chain.back().getTimeFound();
+            chain.push_back(currentHashedBlock);
+             timeDifference = difftime(latest, previous); //in seconds
+        } else {
+            timeDifference = 10;
+        }
+
 
 //        setDifficulty();
 //if (timeDifference < 0.1) timeDifference = 0.1;
