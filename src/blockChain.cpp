@@ -74,6 +74,11 @@ void BlockChain::pushBlock() {
 //
 //        }
 //        cout << getDifficulty();
+
+
+        addToFile(currentHashedBlock);
+
+
         ready = true;
     }
 }

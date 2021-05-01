@@ -62,6 +62,8 @@ public:
 //    string getProjectNameHash();
 
     vector<Block> getBlocks();
+    
+    void addToFile(){return};
 };
 
 #endif //GRAPHENECHAIN_BLOCK_H
