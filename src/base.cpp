@@ -71,10 +71,10 @@ void userActions() {
                 cout << "\n";
                 cout << "Previous Hash: " << current.getPreviousHash();
                 cout << "\n";
-                vector<Transaction> a = current.getTransactions();
+                vector<Transaction> getTransactions = current.getTransactions();
                 cout << "Transactions:\n";
-                for (unsigned int i = 0; i < a.size(); i++) {
-                    cout << i << ". " << a.at(i).getTransaction() << "\n";
+                for (unsigned int i = 0; i < getTransactions.size(); i++) {
+                    cout << i << ". " << getTransactions.at(i).getTransaction() << "\n";
                     if (current.foundHash()) {
                         cout << "Hash: " << current.getHash() << "\n";
                     }
