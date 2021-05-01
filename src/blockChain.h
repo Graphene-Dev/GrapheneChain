@@ -53,9 +53,9 @@ public:
 
     bool verifyChain(int start = 0, int end = -1);
 
-    int getDiffPadding() {
-        return numZerosAtStart;
-    }
+    int getDiffPadding();
+
+    void resetChain() {return};
 
 //    void setProjectName(string projectName);
 //

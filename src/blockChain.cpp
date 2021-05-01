@@ -5,7 +5,7 @@
 #include "block.h"
 #include "transaction.h"
 #include <algorithm>
-#include <time.h>
+#include <ctime>
 
 using namespace std;
 
@@ -129,4 +129,8 @@ bool BlockChain::verifyChain(int start, int end) {
 vector<Block> BlockChain::getBlocks() {
     vector<Block> vecOfStr(chain.begin(), chain.end());
     return vecOfStr;
+}
+
+int BlockChain::getDiffPadding() {
+    return numZerosAtStart;
 }
