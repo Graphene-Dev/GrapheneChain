@@ -46,12 +46,12 @@ void BlockChain::pushBlock() {
         double timeDifference;
         if (chain.size() != 0) {
             time_t previous = chain.back().getTimeFound();
-            chain.push_back(currentHashedBlock);
+
              timeDifference = difftime(latest, previous); //in seconds
         } else {
             timeDifference = 10;
         }
-
+        chain.push_back(currentHashedBlock);
 
 //        setDifficulty();
 //if (timeDifference < 0.1) timeDifference = 0.1;
