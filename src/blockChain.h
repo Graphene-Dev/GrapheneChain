@@ -31,9 +31,11 @@ class BlockChain {
 
     void hashCurrentBlock();
 
+
 public:
-    BlockChain() {
-    }
+    BlockChain();
+
+    BlockChain(string name);
 
     void setTargetTime(int target);
 
@@ -55,15 +57,24 @@ public:
 
     int getDiffPadding();
 
-    void resetChain() {return};
+    void resetChain();
 
-//    void setProjectName(string projectName);
+    void setProjectName(string newProjectName);
 //
-//    string getProjectNameHash();
+    string getProjectNameHash();
+
+    string getProjectName();
 
     vector<Block> getBlocks();
 
-    void addToFile(Block currentHashedBlock) {return};
+    void addToFile(Block currentlyHashedBlock);
+
+    void resetLocalGetFromFile(string name);
+
+    void resetMem();
+
+    void printFile();
+
 };
 
 #endif //GRAPHENECHAIN_BLOCK_H

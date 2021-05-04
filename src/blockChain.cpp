@@ -6,8 +6,16 @@
 #include "transaction.h"
 #include <algorithm>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
+
+BlockChain::BlockChain() {
+    projectName = "";
+    projectNameHash = sha256(projectName);
+}
+
+
 
 void BlockChain::setDifficulty(unsigned long long diff) {
     difficulty = diff;
@@ -139,3 +147,43 @@ vector<Block> BlockChain::getBlocks() {
 int BlockChain::getDiffPadding() {
     return numZerosAtStart;
 }
+
+void BlockChain::addToFile(Block currentlyHashedBlock) {
+
+}
+
+void BlockChain::resetLocalGetFromFile(string name) {
+    resetMem();
+}
+
+void BlockChain::resetChain() {
+
+}
+
+void BlockChain::resetMem() {
+
+}
+
+void BlockChain::printFile() {
+    string currentText;
+    ifstream readFile("out/chain/"+getProjectNameHash()+".txt");
+    while (getline (readFile, currentText)) {
+        // Output the text from the file
+        cout << currentText;
+    }
+    readFile.close();
+}
+
+void BlockChain::setProjectName(string newProjectName) {
+    this->projectName = newProjectName;
+    projectNameHash = sha256(newProjectName);
+}
+
+string BlockChain::getProjectName() {
+    return projectName;
+}
+
+string BlockChain::getProjectNameHash() {
+    return projectNameHash;
+}
+
