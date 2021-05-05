@@ -22,10 +22,19 @@ Private variables:
 - `diffPadding`
   - Type: `int`
   - Number of zeros after difficulty
+  - Default value:
+    - `0`
+  - Access Locations:
+    - `getDiffPadding()` returns the padding.
+      - currently never called
+  - Modifer Locations:
+    - `setDiffPadding(int padding)` changes the padding to `padding`
+      - current accessed at `x` 
 - `difficulty`
   - Type: `unsigned long long`
   - Difficulty for the blocks, could most likely be a `int` because of `diffPadding`
-
+  - Default value:
+    - `0`
 
 
 Functions:
