@@ -75,6 +75,8 @@ public:
 
     void printFile();
 
+    BlockChain readFile();
+
 };
 
 #endif //GRAPHENECHAIN_BLOCK_H

@@ -149,7 +149,9 @@ int BlockChain::getDiffPadding() {
 }
 
 void BlockChain::addToFile(Block currentlyHashedBlock) {
+    ofstream file("out/chain/"+getProjectNameHash()+".txt",ios_base::app);
 
+    file.close();
 }
 
 void BlockChain::resetLocalGetFromFile(string name) {
@@ -157,7 +159,9 @@ void BlockChain::resetLocalGetFromFile(string name) {
 }
 
 void BlockChain::resetChain() {
+    ofstream file("out/chain/"+getProjectNameHash()+".txt");
 
+    file.close();
 }
 
 void BlockChain::resetMem() {
@@ -172,6 +176,10 @@ void BlockChain::printFile() {
         cout << currentText;
     }
     readFile.close();
+}
+
+BlockChain BlockChain::readFile() {
+
 }
 
 void BlockChain::setProjectName(string newProjectName) {
