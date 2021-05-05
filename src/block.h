@@ -20,6 +20,7 @@ class Block {
     //initialize variables
     string previousHash;            //Hash from the previous block
     list<Transaction> transactions;//List of transactions contained in this block
+    int diffPadding;
     unsigned long long difficulty;                 //The difficulty of the block
 //    string currentHash;
     time_t timeFound;               //Time the block was last hashed
@@ -29,7 +30,7 @@ class Block {
     bool found = false;             //If the block hash has been found
     string hash;                    //the current hash
     int adjustmentFactor = 1;       //difficulty adjustment factor
-    int diffPadding;
+
 
 
 
