@@ -62,7 +62,7 @@ void BlockChain::pushBlock() {
         chain.push_back(currentHashedBlock);
 
 //        setDifficulty();
-//if (timeDifference < 0.1) timeDifference = 0.1;
+//        if (timeDifference < 0.1) timeDifference = 0.1;
 //        cout << timeDifference << "\n";
 //        if (targetTime > timeDifference)
 //            setDifficulty(getDifficulty()-(adjustmentFactor*((targetTime/timeDifference))));

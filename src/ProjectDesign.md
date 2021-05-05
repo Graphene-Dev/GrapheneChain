@@ -7,6 +7,14 @@
 Functions:
 
 ### Block
+Private variables:
+
+- `previousHash`
+    - Type: `string`
+    - Hash from the previous block
+- `transaction`
+    - Type: `list<Transaction>`
+    - List of transactions contained in this block
 
 Functions:
 
@@ -21,3 +29,8 @@ Functions:
 Functions:
 
 ### Base
+
+# Things to Fix
+
+## Blockchain.cpp/.h
+- Difficulty
