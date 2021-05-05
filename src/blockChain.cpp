@@ -52,7 +52,7 @@ void BlockChain::pushBlock() {
     if (blockHashed && !ready) {
         time_t latest = currentHashedBlock.getTimeFound();
         double timeDifference;
-        if (chain.size() != 0) {
+        if (!chain.empty()) {
             time_t previous = chain.back().getTimeFound();
 
              timeDifference = difftime(latest, previous); //in seconds
