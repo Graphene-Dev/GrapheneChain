@@ -20,8 +20,21 @@ Included libraries:
   - `<ctime>`
   - `<sstream>"`
   - `<algorithm>`
-- Implementation
 
+
+- Implementation
+  - `"block.h"`
+  - `<cstdlib>`
+  - `<iostream>`
+  - `<string>`
+  - `<vector>`
+  - `"sha256.h"`
+  - `"transaction.h"`
+  - `<ctime>`
+  - `<algorithm>`
+  
+Namespace:
+- `std`
 
 Private variables:
 
@@ -82,6 +95,17 @@ Functions:
   - Modifies the amount of currency in the transaction
 
 ### BlockChain
+Included libraries:
+- Implementation
+  - `"blockChain.h"`
+  - `<iostream>`
+  - `<string>`
+  - `<vector>`
+  - `"block.h"`
+  - `"transaction.h"`
+  - `<algorithm>`
+  - `<sctime>`
+  - `<fstream>`
 
 Functions:
 
