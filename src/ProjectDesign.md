@@ -7,6 +7,22 @@
 Functions:
 
 ### Block
+Included libraries:
+- Header
+  - `<cstdlib>`
+  - `<iostream>`
+  - `<string>`
+  - `<vector>`
+  - `<list>`
+  - `<thread>`
+  - `"sha256.h"`
+  - `"transaction.h"`
+  - `<ctime>`
+  - `<sstream>"`
+  - `<algorithm>`
+- Implementation
+
+
 Private variables:
 
 - `previousHash`
@@ -57,7 +73,7 @@ Functions:
   - Constructor
   - Parameters: `none`
   - Returns: `void`
-  
+ - `hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second)` 
 
 
 - `getAmount()`
