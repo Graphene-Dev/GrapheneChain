@@ -74,4 +74,4 @@ Functions:
 # Things to Fix
 
 ## Blockchain.cpp/.h
-- Difficulty
+- Dynamic difficulty
