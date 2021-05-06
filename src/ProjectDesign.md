@@ -124,9 +124,20 @@ Namespace:
 Private Variables:
 
 Functions:
-:
+
 
 ### Base
+Included libraries:
+- Implementation
+
+Namespace:
+- `std`
+
+Global Variables:
+
+Functions:
+
+
 
 # Things to Fix
 
