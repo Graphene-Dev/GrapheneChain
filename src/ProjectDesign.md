@@ -106,6 +106,7 @@ Functions:
 
 ### BlockChain
 Included libraries:
+- Header
 - Implementation
   - `"blockChain.h"`
   - `<iostream>`
@@ -117,7 +118,13 @@ Included libraries:
   - `<sctime>`
   - `<fstream>`
 
+Namespace:
+- `std`
+
+Private Variables:
+
 Functions:
+:
 
 ### Base
 
