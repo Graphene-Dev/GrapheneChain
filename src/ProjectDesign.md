@@ -129,6 +129,16 @@ Functions:
 ### Base
 Included libraries:
 - Implementation
+  - if `_WIN32` `<windows.h>` else `unistd.h`
+  - `<iostream>`
+  - `<string>`
+  - `<vector>`
+  - `<thread>`
+  - `"sha256.h"`
+  - `"blockChain.h`
+  - `"transaction.h"`
+  - `"block.h"`
+
 
 Namespace:
 - `std`
