@@ -3,11 +3,21 @@
 ## Block Classes
 
 ### Transaction
+Included Libraties:
+- Header
+- Implementation
+
+Namespace:
+- `std`
+
+Private Variables:
 
 Functions:
 
+
+
 ### Block
-Included libraries:
+Included Libraries:
 - Header
   - `<cstdlib>`
   - `<iostream>`
