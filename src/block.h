@@ -38,6 +38,8 @@ class Block {
 public:
     //Constructor
     Block() {
+        currentBlock = numberOfBlocks;
+        numberOfBlocks++;
     }
 
     bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second);
