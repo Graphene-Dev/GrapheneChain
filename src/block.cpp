@@ -10,6 +10,8 @@
 
 using namespace std;
 
+unsigned long long Block::numberOfBlocks = 0;
+
 bool Block::hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second) {
 //    while (first.at(0) == '0') {
 //        first = first.substr(1, first.length());

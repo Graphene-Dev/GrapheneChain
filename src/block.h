@@ -30,7 +30,8 @@ class Block {
     bool found = false;             //If the block hash has been found
     string hash;                    //the current hash
     int adjustmentFactor = 1;       //difficulty adjustment factor
-
+    static unsigned long long numberOfBlocks;
+    int currentBlock;
 
 
 
