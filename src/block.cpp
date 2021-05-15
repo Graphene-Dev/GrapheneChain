@@ -169,3 +169,13 @@ int Block::getDiffPadding() {
 void Block::setDiffPadding(int padding) {
     diffPadding = padding;
 }
+
+
+
+string Block::toString() {
+    return "";
+}
+
+ostream& operator<<(ostream& out, Block& b) {
+    return out << b.toString();
+}

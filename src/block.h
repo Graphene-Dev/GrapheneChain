@@ -97,6 +97,13 @@ public:
     int getDiffPadding();
 
     void setDiffPadding(int padding);
+
+    string toString();
+
+
+
+
 };
 
+ostream& operator<<(ostream& out, const Block& r);
 #endif //GRAPHENECHAIN_BLOCK_H
