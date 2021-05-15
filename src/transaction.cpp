@@ -63,3 +63,11 @@ string Transaction::getTransaction() {
 string Transaction::getHash() {
     return sha256(sender + receiver + to_string(amount) + to_string(current_time));
 }
+
+string Transaction::toString() {
+    return "";
+}
+
+ostream& operator<<(ostream& out, Transaction& t) {
+    return out << t.toString();
+}

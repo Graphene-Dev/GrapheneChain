@@ -44,6 +44,10 @@ public:
 
     //return the hash of the transaction
     string getHash();
+
+
+    string toString();
 };
 
+ostream& operator<<(ostream& out, Transaction& t);
 #endif //GRAPHENECHAIN_TRANSACTION_H

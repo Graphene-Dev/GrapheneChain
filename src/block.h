@@ -105,5 +105,5 @@ public:
 
 };
 
-ostream& operator<<(ostream& out, const Block& r);
+ostream& operator<<(ostream& out, Block& b);
 #endif //GRAPHENECHAIN_BLOCK_H

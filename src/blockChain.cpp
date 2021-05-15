@@ -195,3 +195,10 @@ string BlockChain::getProjectNameHash() {
     return projectNameHash;
 }
 
+string BlockChain::toString() {
+    return "";
+}
+
+ostream& operator<<(ostream& out, BlockChain& b) {
+    return out << b.toString();
+}

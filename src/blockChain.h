@@ -77,6 +77,9 @@ public:
 
     BlockChain readFile();
 
+
+    string toString();
 };
 
+ostream& operator<<(ostream& out, BlockChain& b);
 #endif //GRAPHENECHAIN_BLOCK_H
