@@ -1,4 +1,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/graphene-dev/graphenechain/badge/master)](https://www.codefactor.io/repository/github/graphene-dev/graphenechain/overview/master)
+[![](https://tokei.rs/b1/github/Graphene-Dev/GrapheneChain?category=lines)](https://github.com/Graphene-Dev/GrapheneChain)
+[![](https://tokei.rs/b1/github/Graphene-Dev/GrapheneChain?category=files)](https://github.com/Graphene-Dev/GrapheneChain)
+
 # GrapheneChain
 GrapheneChain is a template cryptocurrency chain 
 developed for those who want to run a crypto 
