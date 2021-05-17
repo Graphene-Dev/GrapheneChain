@@ -12,10 +12,6 @@ to create a custom cryptocurrency from scratch.
 
 
 
-
-
-
-
 # Compiling:
 * Windows 10
 - From the start menu, open 'x64 Native Tools Command Prompt for vs2019'.
