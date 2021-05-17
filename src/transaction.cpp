@@ -65,6 +65,10 @@ string Transaction::getHash() {
 }
 
 string Transaction::toString() {
+    string output = "Transaction:";
+    output += "\n Date created: ";
+    output += current_time;
+    
     return "";
 }
 
