@@ -43,7 +43,7 @@ bool running = true;
 
 void userActions() {
     while (true) {
-        cout << "The availible commands are: \n newTransacion \n displayChain \n displayCurrentBlock \n hashBlock OBS! only for testing \n";
+        cout << "The availible commands are: \n newTransacion \n displayChain \n displayCurrentBlock \n";
         cout << "";
         cout << "Next action? ";
         string input;
