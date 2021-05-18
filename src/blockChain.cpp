@@ -64,7 +64,7 @@ void BlockChain::pushBlock() {
 //        setDifficulty();
 
         if (timeDifference < 0.1) timeDifference = 0.1;
-        cout << timeDifference << "\n";
+//        cout << timeDifference << "\n";
         if (targetTime > timeDifference)
             setDifficulty(getDifficulty()-(adjustmentFactor*((timeDifference/targetTime))));
         if (targetTime < timeDifference)
@@ -178,7 +178,8 @@ void BlockChain::printFile() {
 }
 
 BlockChain BlockChain::readFile() {
-
+    BlockChain blockchain;
+    return blockchain;
 }
 
 void BlockChain::setProjectName(string newProjectName) {

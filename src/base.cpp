@@ -28,6 +28,10 @@
 #include "transaction.h"
 #include "block.h"
 
+
+
+#include <time.h>
+
 //set namespace
 using namespace std;
 
@@ -79,7 +83,15 @@ void userActions() {
                         cout << "Hash: " << current.getHash() << "\n";
                     }
                 }
-                cout << "diff: " << current.getDifficulty() << "\n";
+                stringstream ss;
+                ss << hex << current.getDifficulty();
+                string diff = ss.str();
+                for (int j = 0; j < current.getDiffPadding(); j++) {
+                    diff = "0" + diff;
+                }
+                cout << "Difficulty: " << diff << "\n";
+                time_t time = current.getTimeFound();
+                cout << "Time Found: " << time << "\n";
 //                cout << "Found date: " << to_string(current.getTimeFound());
                 cout << "\n";
             }
@@ -94,7 +106,14 @@ void userActions() {
                 cout << "Block Hash: ";
                 cout << block.getHash() << "\n";
             }
-            cout << "Difficulty: " << block.getDifficulty() << "\n";
+            stringstream ss;
+            ss << hex << block.getDifficulty();
+            string diff = ss.str();
+            for (int j = 0; j < block.getDiffPadding(); j++) {
+                diff = "0" + diff;
+            }
+            cout << "Difficulty: " << diff << "\n";
+
 //            cout << "Found date: " << to_string(block.getTimeFound());
             cout << "\n";
         }
