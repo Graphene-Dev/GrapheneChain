@@ -80,7 +80,7 @@ void BlockChain::pushBlock() {
             setDifficulty(getDifficulty()+10);
 
         }
-        cout << getDifficulty();
+        
 
 
         addToFile(currentHashedBlock);
