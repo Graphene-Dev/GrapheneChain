@@ -47,7 +47,6 @@ int256_t Euclidean::extendedEuclidean(int256_t a, int256_t b, int256_t* x, int25
 
 int256_t Euclidean::euclidean(int256_t a, int256_t b)
 {
-
   if ((a == 0) || (b == 0))
   {
     return 0;

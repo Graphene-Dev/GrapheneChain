@@ -19,3 +19,7 @@ to create a custom cryptocurrency from scratch.
     - `MSBuild GrapheneChain.sln`
     The binaries will be in `Debug` folder when it is done
       
+
+
+# Other Libraries
+RSA, SHA256 (Both will be remade for our purposes later)

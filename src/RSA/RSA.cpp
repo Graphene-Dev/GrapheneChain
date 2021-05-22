@@ -53,7 +53,6 @@ void RSA::calcKeys()
 
 void RSA::calcPrivateKey()
 {
-
   int256_t a = this->phi_of_m;
   int256_t b = this->r;
 

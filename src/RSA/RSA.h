@@ -37,7 +37,6 @@ namespace Crypto
   class RSA
   {
   private:
-
     // PRIVATE KEY MEMBERS
     int256_t p;
     int256_t q;

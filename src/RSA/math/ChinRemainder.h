@@ -14,7 +14,6 @@ using namespace boost::multiprecision;
 class ChinRemainder
 {
 private:
-
   int x1;
   int x2;
 
@@ -22,7 +21,6 @@ private:
   int m2;
 
 public:
-  
   //-------------------------------------------------------
   // Constructor
   //

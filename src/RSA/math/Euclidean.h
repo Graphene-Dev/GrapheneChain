@@ -22,8 +22,7 @@ class Euclidean
     // Desctructor
     ~Euclidean();
   public:
-
-    ///----------------------------------------------------
+    //----------------------------------------------------
     // Extended euclidean algorithm to calculate gcd of
     // two integers and it's inverse representatives.
     //

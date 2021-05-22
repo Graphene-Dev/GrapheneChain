@@ -99,10 +99,6 @@ public:
     void setDiffPadding(int padding);
 
     string toString();
-
-
-
-
 };
 
 ostream& operator<<(ostream& out, Block& b);

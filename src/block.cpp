@@ -63,7 +63,6 @@ bool Block::foundHash() {
 
 
 string Block::getHash() {
-
     if (!found) {
         filler = 0;
         Transaction *transactionsHashes = new Transaction[this->transactions.size()];

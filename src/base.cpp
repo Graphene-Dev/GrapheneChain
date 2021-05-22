@@ -126,7 +126,6 @@ int main() {
     chain.addBlock(block);
     while (running) {
         if (chain.getBlockhashed()) {
-
             chain.pushBlock();
             vector<Block> blocksList = chain.getBlocks();
             string prevHash = "";
