@@ -119,7 +119,9 @@ void userActions() {
 }
 
 int main() {
-    cout << "Base Start\n";
+//    cout << "\033[31;1;7;37mBase Start\033[0m\n";
+    cout << "Base Start\n"; //for some reason i cant get colors to work
+//    cout << "\033[1;31mbold red text\033[0m\n";
 //    //Content
     block.setPreviousHash("");
     thread thread_obj(userActions);
