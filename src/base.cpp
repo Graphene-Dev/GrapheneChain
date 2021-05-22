@@ -122,16 +122,20 @@ int main() {
 //    cout << "\033[31;1;7;37mBase Start\033[0m\n";
     cout << "Base Start\n"; //for some reason i cant get colors to work
 //    cout << "\033[1;31mbold red text\033[0m\n";
-//    //Content
+
+
+    //Initialize Genesis Block
     block.setPreviousHash("");
     thread thread_obj(userActions);
     chain.addBlock(block);
+
+    //Loop to add blocks when the blockchain allows for it
     while (running) {
         if (chain.getBlockhashed()) {
             chain.pushBlock();
             vector<Block> blocksList = chain.getBlocks();
             string prevHash = "";
-            if (blocksList.size() >= 1) {
+            if (!blocksList.empty()) {
                 prevHash = chain.getBlocks().at(chain.getBlocks().size()-1).getHash();
                 block.setPreviousHash(prevHash);
             }
