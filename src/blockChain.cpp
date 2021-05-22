@@ -78,10 +78,7 @@ void BlockChain::pushBlock() {
         while (getDifficulty() < 1) {
             numZerosAtStart++;
             setDifficulty(getDifficulty()+10);
-
         }
-        
-
 
         addToFile(currentHashedBlock);
 
@@ -163,9 +160,7 @@ void BlockChain::resetChain() {
     file.close();
 }
 
-void BlockChain::resetMem() {
-
-}
+void BlockChain::resetMem() {}
 
 void BlockChain::printFile() {
     string currentText;
