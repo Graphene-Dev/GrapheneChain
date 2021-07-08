@@ -71,28 +71,6 @@ void userActions() {
             for (unsigned int i = 0; i < a.size(); i++) {
                 Block current = a.at(i);
                 cout << current;
-//                cout << "Block " << current.blockID() << "\n";
-//                cout << "Previous Hash: " << current.getPreviousHash() << "\n";
-//                vector<Transaction> getTransactions = current.getTransactions();
-//                cout << "Transactions:\n";
-//                for (unsigned int i = 0; i < getTransactions.size(); i++) {
-//                    cout << i << ". " << getTransactions.at(i).getTransaction() << "\n";
-//
-//                }
-//                if (current.foundHash()) {
-//                    cout << "Hash: " << current.getHash() << "\n";
-//                }
-//                stringstream ss;
-//                ss << hex << current.getDifficulty();
-//                string diff = ss.str();
-//                for (int j = 0; j < current.getDiffPadding(); j++) {
-//                    diff = "0" + diff;
-//                }
-//                cout << "Difficulty: " << diff << "\n";
-//                //fix diff printing later cus its important
-//
-//                time_t time = current.getTimeFound();
-//                cout << "Time Found: " << time << "\n" << "\n";
             }
         }
         if (input == "displayCurrentBlock") {
