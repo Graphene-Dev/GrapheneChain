@@ -191,7 +191,18 @@ string BlockChain::getProjectNameHash() {
 }
 
 string BlockChain::toString() {
-    return "";
+    string output = "BlockChain\n";
+    vector<Block> a = getBlocks();
+//            cout << "project hash: " << chain.getProjectNameHash() << "\n";
+    for (unsigned int i = 0; i < a.size(); i++) {
+        Block current = a.at(i);
+        output += current.getBlock();
+    }
+    return output;
+}
+
+string BlockChain::getBlockChain() {
+    return toString();
 }
 
 ostream& operator<<(ostream& out, BlockChain& b) {

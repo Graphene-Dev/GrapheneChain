@@ -180,8 +180,7 @@ string Block::toString() {
     vector<Transaction> getTransactionsVC = getTransactions();
     blockString += "Transactions:\n";
     for (unsigned int i = 0; i < getTransactionsVC.size(); i++) {
-        blockString += to_string(i) + ". " + getTransactionsVC.at(i).getTransaction() + "\n";
-
+        blockString += getTransactionsVC.at(i).getTransaction();
     }
     if (foundHash()) {
         blockString += "Hash: " + getHash() + "\n";
@@ -199,6 +198,10 @@ string Block::toString() {
     blockString += "Time Found: " + to_string(time) + "\n" + "\n";
 
     return blockString;
+}
+
+string Block::getBlock() {
+    return toString();
 }
 
 ostream& operator<<(ostream& out, Block& b) {

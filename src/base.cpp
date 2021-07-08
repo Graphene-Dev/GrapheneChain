@@ -65,13 +65,8 @@ void userActions() {
             block.addTransaction(newTransaction);
         }
         if (input == "displayChain") {
-            cout << "Chain\n";
-            vector<Block> a = chain.getBlocks();
-//            cout << "project hash: " << chain.getProjectNameHash() << "\n";
-            for (unsigned int i = 0; i < a.size(); i++) {
-                Block current = a.at(i);
-                cout << current;
-            }
+//            cout << "Chain\n";
+            cout << chain.getBlockChain();
         }
         if (input == "displayCurrentBlock") {
             cout << "Previous Hash: " << block.getPreviousHash() << "\n";

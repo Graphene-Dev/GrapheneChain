@@ -100,6 +100,8 @@ public:
     void setDiffPadding(int padding);
 
     string toString();
+
+    string getBlock();
 };
 
 ostream &operator<<(ostream &out, Block &b);

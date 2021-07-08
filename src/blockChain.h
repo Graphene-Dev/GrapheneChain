@@ -79,6 +79,8 @@ public:
 
 
     string toString();
+
+    string getBlockChain();
 };
 
 ostream& operator<<(ostream& out, BlockChain& b);

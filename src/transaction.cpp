@@ -55,8 +55,7 @@ void Transaction::setReceiver(string to) {
 
 //get the transaction in a string //// Should probably deprecate this function later
 string Transaction::getTransaction() {
-    return "From: " + sender + ", To: " + receiver + ", Amount: " + to_string(amount) + ", " +
-           to_string(current_time);
+    return toString();
 }
 
 //return the hash of the transaction
@@ -81,7 +80,7 @@ string Transaction::toString() {
     output += to_string(getAmount());
     output += "\n    Hash: ";
     output += getHash();
-    output += "\n";
+    output += "\n\n";
     return output;
 }
 
