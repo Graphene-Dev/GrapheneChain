@@ -24,10 +24,3 @@ add_executable(GrapheneChain
 add_executable(GrapheneChain
         src/blockChain.cpp
         src/blockChain.h)
-add_executable(GrapheneChain
-        src/RSA/src/RSA.cpp
-        src/RSA/src/RSA.h
-        src/RSA/src/Encryptor.cpp
-        src/RSA/src/Encryptor.h
-        src/RSA/src/Decryptor.cpp
-        src/RSA/src/Decryptor.h)
