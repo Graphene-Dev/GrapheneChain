@@ -53,7 +53,7 @@ void Transaction::setReceiver(string to) {
     current_time = time(NULL);
 }
 
-//get the transaction in a string
+//get the transaction in a string //// Should probably deprecate this function later
 string Transaction::getTransaction() {
     return "From: " + sender + ", To: " + receiver + ", Amount: " + to_string(amount) + ", " +
            to_string(current_time);
@@ -64,12 +64,25 @@ string Transaction::getHash() {
     return sha256(sender + receiver + to_string(amount) + to_string(current_time));
 }
 
+time_t Transaction::getTime() {
+    return current_time;
+}
+
 string Transaction::toString() {
-    string output = "Transaction:";
-    output += "\n Date created: ";
-    output += current_time;
-    
-    return "";
+    string output = "TransactionID: ";
+    output += to_string(getTime());//for now id is time created
+    output += "\n    Date created: ";
+    output += to_string(getTime());
+    output += "\n    From: ";
+    output += getSender();
+    output += "\n    To: ";
+    output += getReceiver();
+    output += "\n    Amount: ";
+    output += to_string(getAmount());
+    output += "\n    Hash: ";
+    output += getHash();
+    output += "\n";
+    return output;
 }
 
 ostream& operator<<(ostream& out, Transaction& t) {

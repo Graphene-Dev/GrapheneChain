@@ -12,6 +12,8 @@ class Transaction {
     string receiver;    //who is recieving it
     int amount;         //the amount being processed
     time_t current_time;//Time transaction last updated
+//    static unsigned long long transactionNumber;
+//    unsigned long long currentTransactionCreated;
 
 public:
     //Constructor, initialize default values
@@ -37,6 +39,8 @@ public:
     //modifier of the reciever of the transaction
     void setReceiver(string to);
 
+    //get time
+    time_t getTime();
 
     //get the transaction in a string
     string getTransaction();

@@ -44,8 +44,7 @@ bool running = true;
 void userActions() {
     while (true) {
         cout << "The availible commands are: \n newTransacion \n displayChain \n displayCurrentBlock \n";
-        cout << "";
-        cout << "Next action? ";
+        cout << "Next action?";
         string input;
         cin >> input;
         if (input == "exit") {
@@ -114,6 +113,20 @@ void userActions() {
 
             cout << "Found date: " << to_string(block.getTimeFound());
             cout << "\n";
+        }
+        if (input =="transactiontest") {
+            string from;
+            string to;
+            int amount;
+            cout << "From?";
+            cin >> from;
+            cout << "To?";
+            cin >> to;
+            cout << "Amount?";
+            cin >> amount;
+            Transaction newTransaction(from, to, amount);
+            cout << newTransaction;
+            cout << "\n";//throws serror if amount is a string i think i need to fix that later
         }
     }
 }
