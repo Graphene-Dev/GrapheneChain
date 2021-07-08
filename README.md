@@ -22,4 +22,4 @@ to create a custom cryptocurrency from scratch.
 
 
 # Other Libraries
-RSA, SHA256 (Both will be remade for our purposes later)
+SHA256 (will be remade for our purposes later)
