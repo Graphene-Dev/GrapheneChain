@@ -34,13 +34,14 @@ class Block {
     int currentBlock;
 
 
-
 public:
     //Constructor
     Block() {
         currentBlock = numberOfBlocks;
         numberOfBlocks++;
     }
+
+    int blockID();
 
     bool hex_greater(basic_string<char, char_traits<char>, allocator<char>> first, std::string &second);
 
@@ -101,5 +102,6 @@ public:
     string toString();
 };
 
-ostream& operator<<(ostream& out, Block& b);
+ostream &operator<<(ostream &out, Block &b);
+
 #endif //GRAPHENECHAIN_BLOCK_H

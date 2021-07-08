@@ -70,27 +70,29 @@ void userActions() {
 //            cout << "project hash: " << chain.getProjectNameHash() << "\n";
             for (unsigned int i = 0; i < a.size(); i++) {
                 Block current = a.at(i);
-                cout << "Block " << i + 1 << "\n";
-                cout << "Previous Hash: " << current.getPreviousHash() << "\n";
-                vector<Transaction> getTransactions = current.getTransactions();
-                cout << "Transactions:\n";
-                for (unsigned int i = 0; i < getTransactions.size(); i++) {
-                    cout << i << ". " << getTransactions.at(i).getTransaction() << "\n";
-                    if (current.foundHash()) {
-                        cout << "Hash: " << current.getHash() << "\n";
-                    }
-                }
-
-                stringstream ss;
-                ss << hex << current.getDifficulty();
-                string diff = ss.str();
-                for (int j = 0; j < current.getDiffPadding(); j++) {
-                    diff = "0" + diff;
-                }
-                cout << "Difficulty: " << diff << "\n";
-
-                time_t time = current.getTimeFound();
-                cout << "Time Found: " << time << "\n" << "\n";
+                cout << current;
+//                cout << "Block " << current.blockID() << "\n";
+//                cout << "Previous Hash: " << current.getPreviousHash() << "\n";
+//                vector<Transaction> getTransactions = current.getTransactions();
+//                cout << "Transactions:\n";
+//                for (unsigned int i = 0; i < getTransactions.size(); i++) {
+//                    cout << i << ". " << getTransactions.at(i).getTransaction() << "\n";
+//
+//                }
+//                if (current.foundHash()) {
+//                    cout << "Hash: " << current.getHash() << "\n";
+//                }
+//                stringstream ss;
+//                ss << hex << current.getDifficulty();
+//                string diff = ss.str();
+//                for (int j = 0; j < current.getDiffPadding(); j++) {
+//                    diff = "0" + diff;
+//                }
+//                cout << "Difficulty: " << diff << "\n";
+//                //fix diff printing later cus its important
+//
+//                time_t time = current.getTimeFound();
+//                cout << "Time Found: " << time << "\n" << "\n";
             }
         }
         if (input == "displayCurrentBlock") {
@@ -152,7 +154,7 @@ int main() {
                 prevHash = chain.getBlocks().at(chain.getBlocks().size()-1).getHash();
                 block.setPreviousHash(prevHash);
             }
-            chain.addBlock(block); //fails on second execution
+            chain.addBlock(block);
             block = *new Block;
             block.setDifficulty(chain.getDifficulty());
             block.setDiffPadding(chain.getDiffPadding());

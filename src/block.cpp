@@ -169,10 +169,36 @@ void Block::setDiffPadding(int padding) {
     diffPadding = padding;
 }
 
-
+int Block::blockID() {
+    return currentBlock;
+}
 
 string Block::toString() {
-    return "";
+    string blockString = "";
+    blockString += "Block " + to_string(blockID()) + "\n";
+    blockString += "Previous Hash: " + getPreviousHash() + "\n";
+    vector<Transaction> getTransactionsVC = getTransactions();
+    blockString += "Transactions:\n";
+    for (unsigned int i = 0; i < getTransactionsVC.size(); i++) {
+        blockString += to_string(i) + ". " + getTransactionsVC.at(i).getTransaction() + "\n";
+
+    }
+    if (foundHash()) {
+        blockString += "Hash: " + getHash() + "\n";
+    }
+    stringstream ss;
+    ss << hex << getDifficulty();
+    string diff = ss.str();
+    for (int j = 0; j < getDiffPadding(); j++) {
+        diff = "0" + diff;
+    }
+    blockString += "Difficulty: " + diff + "\n";
+    //fix diff printing later cus its important
+
+    time_t time = getTimeFound();
+    blockString += "Time Found: " + to_string(time) + "\n" + "\n";
+
+    return blockString;
 }
 
 ostream& operator<<(ostream& out, Block& b) {
