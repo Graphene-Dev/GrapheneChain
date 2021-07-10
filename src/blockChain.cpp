@@ -146,6 +146,10 @@ int BlockChain::getDiffPadding() {
 
 void BlockChain::addToFile(Block currentlyHashedBlock) {
     ofstream file("out/chain/"+getProjectNameHash()+".txt",ios_base::app);
+    //clear file
+
+
+    // output to the file
 
     file.close();
 }
