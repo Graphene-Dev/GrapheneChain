@@ -43,7 +43,7 @@ bool running = true;
 
 void userActions() {
     while (true) {
-        cout << "The availible commands are: \n newTransacion \n displayChain \n displayCurrentBlock \n";
+        cout << "The availible commands are: \n toFile \n newTransacion \n displayChain \n displayCurrentBlock \n";
         cout << "Next action?";
         string input;
         cin >> input;
@@ -67,6 +67,11 @@ void userActions() {
         if (input == "displayChain") {
 //            cout << "Chain\n";
             cout << chain.getBlockChain();
+        }
+        if (input == "toFile") {
+//            cout << "Chain\n";
+            chain.writeToFile();
+            cout<< "Done";
         }
         if (input == "displayCurrentBlock") {
             cout << "Previous Hash: " << block.getPreviousHash() << "\n";
@@ -110,7 +115,8 @@ int main() {
 //    cout << "\033[31;1;7;37mBase Start\033[0m\n";
     cout << "Base Start\n"; //for some reason i cant get colors to work
 //    cout << "\033[1;31mbold red text\033[0m\n";
-
+    chain.setProjectName("test");
+    cout << chain.getProjectNameHash();
 
     //Initialize Genesis Block
     block.setPreviousHash("");

@@ -77,6 +77,7 @@ public:
 
     BlockChain readFile();
 
+    void writeToFile();
 
     string toString();
 
