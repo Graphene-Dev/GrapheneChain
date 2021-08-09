@@ -9,7 +9,7 @@
 #include <sys/types.h>
  
 
-int main()
+int server()
 {
   char data[1025] = "test";
   int listenfd = 0,connfd = 0;
