@@ -9,7 +9,6 @@
 #include <errno.h>
 #include <arpa/inet.h>
 
-struct client {
 int client(void)
 {
   int sockfd = 0,n = 0;
@@ -50,5 +49,3 @@ int client(void)
  
   return 0;
 }
-}
-typedef struct main main; 

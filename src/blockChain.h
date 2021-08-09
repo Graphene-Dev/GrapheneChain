@@ -84,7 +84,7 @@ public:
 
     string getBlockChain();
 
-    int netTest();
+    void netTest();
 };
 
 ostream& operator<<(ostream& out, BlockChain& b);

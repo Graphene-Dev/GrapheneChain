@@ -225,7 +225,7 @@ ostream& operator<<(ostream& out, BlockChain& b) {
     return out << b.toString();
 }
 
-int BlockChain::netTest() {
-    // server::data = "test"
-    server main();
+void BlockChain::netTest() {
+    // server data == "test"
+    server();
 }

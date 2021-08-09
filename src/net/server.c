@@ -8,9 +8,8 @@
 #include <string.h>
 #include <sys/types.h>
  
-struct server {
 
-int main()
+int server()
 {
   char data[1025] = "test";
   int listenfd = 0,connfd = 0;
@@ -21,7 +20,7 @@ int main()
   int numrv;  
  
   listenfd = socket(AF_INET, SOCK_STREAM, 0);
-  printf("socket retrieve success\n");
+  printf("socket up and running\n");
   
   memset(&serv_addr, '0', sizeof(serv_addr));
   memset(sendBuff, '0', sizeof(sendBuff));
@@ -48,5 +47,3 @@ int main()
     } 
     return 0;
 };
-};
-typedef struct server server; 
