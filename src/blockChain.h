@@ -12,6 +12,7 @@
 #include <ctime>
 #include <algorithm>
 
+
 //Block-chain class, contains all of the blocks
 class BlockChain {
     list<Block> chain;
@@ -82,6 +83,8 @@ public:
     string toString();
 
     string getBlockChain();
+
+    int netTest();
 };
 
 ostream& operator<<(ostream& out, BlockChain& b);

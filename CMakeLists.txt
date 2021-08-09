@@ -7,9 +7,10 @@ if (UNIX)
     find_package(Boost REQUIRED COMPONENTS)
 endif (UNIX)
 
+if (WIN32)
 set(BOOST_INCLUDEDIR "C:/local/boost_1_76_0")
 set(BOOST_LIBRARYDIR "C:/local/boost_1_76_0/lib32-msvc-14.1")
-
+endif (WIN32)
 add_executable(GrapheneChain
         src/base.cpp)
 add_executable(GrapheneChain
@@ -24,3 +25,8 @@ add_executable(GrapheneChain
 add_executable(GrapheneChain
         src/blockChain.cpp
         src/blockChain.h)
+add_executable(GrapheneChain
+        src/net/server.c
+        src/net/client.c)              
+
+
